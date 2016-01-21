@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Lumex.Project.BLL;
+
+namespace lmxIpos.UI.Product
+{
+    public partial class MainProductOfSubProduct : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            LoadSubProductList();
+        }
+
+        private void LoadSubProductList()
+        {
+            DataTable dt = new DataTable();
+            ProductBLL productBll = new ProductBLL();
+
+            dt = productBll.GetMainProductList();
+            subProductDropDownList.DataSource = dt;
+            subProductDropDownList.DataValueField = "ProductId";
+            subProductDropDownList.DataTextField = "ProductName";
+            subProductDropDownList.DataBind();
+            subProductDropDownList.Focus();
+        }
+
+        protected void warehouseDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            DataTable dt = new DataTable();
+            ProductBLL productBll = new ProductBLL();
+
+        }
+    }
+}

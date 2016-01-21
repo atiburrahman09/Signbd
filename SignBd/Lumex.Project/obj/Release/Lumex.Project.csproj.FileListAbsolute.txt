@@ -1,0 +1,6 @@
+E:\Atib\Projects\signbd\SignBd\Lumex.Project\obj\Release\Lumex.Project.csprojResolveAssemblyReference.cache
+E:\Atib\Projects\signbd\SignBd\Lumex.Project\bin\Release\Lumex.Project.dll
+E:\Atib\Projects\signbd\SignBd\Lumex.Project\bin\Release\Lumex.Project.pdb
+E:\Atib\Projects\signbd\SignBd\Lumex.Project\bin\Release\Lumex.Tech.dll
+E:\Atib\Projects\signbd\SignBd\Lumex.Project\obj\Release\Lumex.Project.dll
+E:\Atib\Projects\signbd\SignBd\Lumex.Project\obj\Release\Lumex.Project.pdb
