@@ -3,6 +3,14 @@
 
 <asp:Content ID="headContent" ContentPlaceHolderID="headContentPlaceHolder" runat="server">
     <link href="/content/css/pagecss/retailsales.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function ExportReportForm() {
+            window.open("/ReportExport.aspx", "_blank");
+        }
+        function ViewReportForm() {
+            window.open("/ReportView.aspx", "_blank");
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="bodyContent" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
     <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="UpdatePanel1" ChildrenAsTriggers="true">
@@ -26,31 +34,22 @@
                     </h4>
                     <asp:Label ID="msgDetailLabel" runat="server" Text=""></asp:Label>
                 </div>
+                <div class="clearfix"></div>
                 <div class="widget">
-                    <header class="widget-header">
+                     <header class="widget-header">
                         <div class="widget-header-icon">
                             
                         </div>
-                        <h3 id="Header3" runat="server" class="widget-header-title">Create Sales Record <%--Form
-                            <asp:Label CssClass="text-success" ID="lblSalesCenterName" runat="server" Text="Label"></asp:Label>--%></h3>
+                        <h3 id="Header3" runat="server" class="widget-header-title">Create Sales Record</h3>
                     </header>
                     <div class="widget-body no-padding">
                         <div class="widget-separator grid-12">
-                            <%-- <div class="widget-separator no-border grid-3">
-                                <asp:DropDownList ID="ddlWHorSC" runat="server" CssClass="form form-full" required="required" OnSelectedIndexChanged="ddlWHorSC_SelectedIndexChanged" AutoPostBack="true">
-                                    <asp:ListItem Text="--Select--" Value="0"></asp:ListItem>
-                                    <asp:ListItem Text="Sales Center" Value="SC"></asp:ListItem>
-                                    <asp:ListItem Text="WareHouse" Value="WH"></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>--%>
                             <div class="widget-separator no-border grid-3">
                                 <asp:DropDownList ID="ddlSelectWareHouseOrSalesCenter" AutoPostBack="True" OnSelectedIndexChanged="ddlSelectWareHouseOrSalesCenter_SelectedIndexChanged" runat="server" CssClass="form form-full" required="required">
                                     <asp:ListItem Text="--Select--" Value=""></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div class="widget-separator no-border grid-3">
-                                <%--<h5 class="typo">
-                                    Product By [Barcode, ID, Name]</h5>--%>
                                 <asp:TextBox ID="productTextBox" runat="server" CssClass="form form-full" placeholder="Product By [Barcode, ID, Name]"></asp:TextBox>
                             </div>
                             <div class="widget-separator no-border grid-3">
@@ -122,6 +121,30 @@
                                 </asp:GridView>
                             </div>
                         </div>
+
+                        <div id="otherInformation" class="widget-separator no-padding grid-12" runat="server" visible="False">
+                            <div class="widget-separator grid-12">
+                                <div class="grid-8">
+                                    <h4 class="typo">Others Sales</h4>
+                                </div>
+                                <div class="widget-separator no-border grid-12">
+                                    <div class="widget-separator no-border grid-4">
+                                        <h5 class="typo">Description</h5>
+                                        <asp:TextBox ID="txtbxDescription" runat="server" CssClass="form form-full" placeholder="Description">
+                                        </asp:TextBox>
+                                    </div>
+                                    <div class="widget-separator no-border grid-4">
+                                        <h5 class="typo">Amount</h5>
+                                        <asp:TextBox ID="txtbxOthersAmount" runat="server" CssClass="form form-full" onfocus="this.select()" Text="0.00" placeholder="Amount"></asp:TextBox>
+                                    </div>
+                                    <div class="widget-separator no-border grid-4">
+                                        <h5 class="typo">Narration</h5>
+                                        <asp:TextBox ID="txtbxNarration" runat="server" CssClass="form form-full" placeholder="Narration">
+                                        </asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="widget-separator no-padding grid-12">
                             <div class="grid-6" style="float: right;">
                                 <div class="widget-separator grid-12">
@@ -157,8 +180,19 @@
                                         <asp:TextBox ID="chequeNumberTextBox" runat="server" placeholder="Cheque Number" CssClass="form form-full autoCompeleteOff" Enabled="false"></asp:TextBox>
                                     </div>
                                     <div class="widget-separator no-border grid-6">
-                                        <h5 class="typo">Cheque Date</h5>
-                                        <asp:TextBox ID="chequeDateTextBox" runat="server" placeholder="Cheque Date" CssClass="date-textbox form form-full autoCompeleteOff" Enabled="false"></asp:TextBox>
+                                        <div class="grid-12">
+                                            <h5 class="typo">Cheque Date
+                                            </h5>
+                                        </div>
+                                        <div class="grid-11">
+                                            <div class="grid-1">
+                                                <i class="icon-calendar"></i>
+                                            </div>
+                                            <div class="grid-11">
+                                                <asp:TextBox ID="chequeDateTextBox" required="required" CssClass="date-textbox cash-cheque form form-full" Enabled="false"
+                                                    runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="widget-separator no-border grid-12">
@@ -210,7 +244,7 @@
                                         <h5 class="typo" style="float: right;">Receivable&nbsp;&nbsp;&nbsp;</h5>
                                     </div>
                                     <div class="grid-3">
-                                        <asp:TextBox ID="receivableAmountTextBox" CssClass="form form-full read-only autoCompeleteOff"
+                                        <asp:TextBox ID="receivableAmountTextBox" Font-Bold="true" CssClass="form form-full read-only autoCompeleteOff"
                                             PlaceHolder="0.00" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="grid-2">
@@ -224,7 +258,7 @@
                                         <h5 class="typo" style="float: right;">Received&nbsp;&nbsp;&nbsp;</h5>
                                     </div>
                                     <div class="grid-3">
-                                        <asp:TextBox ID="receivedAmountTextBox" CssClass="form form-full autoCompeleteOff"
+                                        <asp:TextBox ID="receivedAmountTextBox" onfoucs="this.select()" CssClass="form form-full autoCompeleteOff"
                                             PlaceHolder="0.00" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="grid-2">
@@ -265,10 +299,6 @@
                                     <div class="grid-8">
                                         <h4 class="typo">Customer Information</h4>
                                     </div>
-                                    <%-- <div class="grid-3">
-                                        <asp:Button ID="addCustomerButton" CssClass="btn btn-info" runat="server" Text="Customer from List"
-                                            OnClientClick="return false" />
-                                    </div>--%>
                                 </div>
                                 <div class="grid-12" style="border-right: 1px solid #ECECEC;">
                                     <div class="widget-separator grid-6">
@@ -402,13 +432,22 @@
             <asp:AsyncPostBackTrigger ControlID="addSelectedProductButton" EventName="Click" />
             <asp:AsyncPostBackTrigger ControlID="customerListGridView" EventName="RowDataBound" />
             <asp:AsyncPostBackTrigger ControlID="customerIdDropDownList" EventName="SelectedIndexChanged" />
+            <asp:AsyncPostBackTrigger ControlID="paymentModeDropDownList" EventName="SelectedIndexChanged" />
+
         </Triggers>
     </asp:UpdatePanel>
     <asp:HiddenField ID="totalVATAmountHiddenField" runat="server" />
 </asp:Content>
 <asp:Content ID="scriptContent" ContentPlaceHolderID="scriptContentPlaceHolder" runat="server">
     <script type="text/javascript">
+
         function pageLoad(sender, args) {
+
+            var dateFormat = '<%= Session["DateFormatForDatePicker"] %>';
+            $(".date-textbox").datepicker({ format: dateFormat });
+            $(".date-textbox, .icon-calendar").click(function () {
+                $(this).parent().find(".date-textbox").focus();
+            });
             var checkedRowCount = $("#checkedRowCountHiddenField").val();
             $('.modal-backdrop').remove();
 
@@ -565,9 +604,14 @@
                 $("#selectedProductListGridView tr").each(function () {
                     if (!isNaN(+$(this).find("[id*=amountTextBox]").val())) {
                         tAmt = tAmt + +$(this).find("[id*=amountTextBox]").val();
+                        
                     }
                 });
+                tAmt = tAmt + +$("#txtbxOthersAmount").val();
                 $("#totalAmountTextBox").val(tAmt);
+               
+
+                
             }
 
             function OthersCalculation() {
@@ -583,9 +627,14 @@
                 var prowidth = 0;
                 var OrderUnit = 0;
                 var Totalunit = 0;
+                var OthersAmount = 0;
 
                 if (!isNaN(+$("#totalAmountTextBox").val())) {
                     totalAmt = $("#totalAmountTextBox").val();
+                }
+
+                if (!isNaN(+$("#txtbxOthersAmount").val())) {
+                    OthersAmount = $("#txtbxOthersAmount").val();
                 }
 
                 if (!isNaN(+$("#discountTextBox").val())) {
@@ -612,9 +661,10 @@
                     change = $("#changeAmountTextBox").val();
                 }
 
-                netAmt = totalAmt - discount;
+                totalAmt = parseFloat(totalAmt);
+                netAmt = (totalAmt) - discount;
                 receivable = netAmt + (netAmt * vat / 100);
-
+             
 
                 $("#totalVATAmountHiddenField").val(netAmt * vat / 100);
                 $("#receivableAmountTextBox").val(receivable);
@@ -627,6 +677,7 @@
 
                 $("#vatTextBox").val(vat);
                 $("#discountTextBox").val(discount);
+
             }
 
             $("#discountTextBox").on("change keyup", function () {
@@ -647,6 +698,13 @@
 
             $("#DuesAmoutPayTextBox").on("change keyup", function () {
                 OthersCalculation();
+            });
+
+            $("#txtbxOthersAmount").on("change keyup", function () {
+                TotalAmountCalculation();
+                OthersCalculation();
+
+               
             });
 
 
@@ -707,7 +765,7 @@
                 '.chosen-select-no-single': { disable_search_threshold: 20 },
                 '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
                 '.chosen-select-width': { width: "96%" }
-            }
+            };
             for (var selector in config) {
                 $(selector).chosen(config[selector]);
             }

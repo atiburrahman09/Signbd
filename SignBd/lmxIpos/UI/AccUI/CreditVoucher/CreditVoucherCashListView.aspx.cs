@@ -48,68 +48,68 @@ namespace lmxIpos.UI.AccUI.CreditVoucher
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ServerControlScript", alertScript, true);
         }
 
-        //protected void LoadSalesCenters()
-        //{
-        //    SalesCenterBLL salesCenter = new SalesCenterBLL();
+        protected void LoadSalesCenters()
+        {
+            SalesCenterBLL salesCenter = new SalesCenterBLL();
 
-        //    try
-        //    {
-        //        DataTable dt = salesCenter.GetActiveSalesCenterListByUser();
+            try
+            {
+                DataTable dt = salesCenter.GetActiveSalesCenterListByUser();
 
-        //        drpdwnSalesCenterOrWarehouse.DataSource = dt;
-        //        drpdwnSalesCenterOrWarehouse.DataValueField = "SalesCenterId";
-        //        drpdwnSalesCenterOrWarehouse.DataTextField = "SalesCenterName";
-        //        drpdwnSalesCenterOrWarehouse.DataBind();
-        //        //drpdwnSalesCenterOrWarehouse.Items.Insert(0, "");
-        //        //drpdwnSalesCenterOrWarehouse.SelectedIndex = 0;
+                drpdwnSalesCenterOrWarehouse.DataSource = dt;
+                drpdwnSalesCenterOrWarehouse.DataValueField = "SalesCenterId";
+                drpdwnSalesCenterOrWarehouse.DataTextField = "SalesCenterName";
+                drpdwnSalesCenterOrWarehouse.DataBind();
+                //drpdwnSalesCenterOrWarehouse.Items.Insert(0, "");
+                //drpdwnSalesCenterOrWarehouse.SelectedIndex = 0;
 
-        //        drpdwnSalesCenterOrWarehouse.SelectedValue = LumexSessionManager.Get("UserSalesCenterId").ToString();
+                drpdwnSalesCenterOrWarehouse.SelectedValue = LumexSessionManager.Get("UserSalesCenterId").ToString();
 
-        //        if (dt.Rows.Count < 1)
-        //        {
-        //            msgbox.Visible = true; msgTitleLabel.Text = "Joining Sales Center Data Not Found!!!"; msgDetailLabel.Text = "";
-        //            msgbox.Attributes.Add("class", "alert alert-warning");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        string message = ex.Message;
-        //        if (ex.InnerException != null) { message += " --> " + ex.InnerException.Message; }
-        //        MyAlertBox("ErrorAlert(\"" + ex.GetType() + "\", \"" + message + "\", \"\");");
-        //    }
-        //    finally
-        //    {
-        //        salesCenter = null;
-        //    }
-        //}
+                if (dt.Rows.Count < 1)
+                {
+                    msgbox.Visible = true; msgTitleLabel.Text = "Joining Sales Center Data Not Found!!!"; msgDetailLabel.Text = "";
+                    msgbox.Attributes.Add("class", "alert alert-warning");
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                if (ex.InnerException != null) { message += " --> " + ex.InnerException.Message; }
+                MyAlertBox("ErrorAlert(\"" + ex.GetType() + "\", \"" + message + "\", \"\");");
+            }
+            finally
+            {
+                salesCenter = null;
+            }
+        }
 
-        //protected void drpdwnAccountOn_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        voucherListGridView.DataSource = null;
-        //        voucherListGridView.DataBind();
+        protected void drpdwnAccountOn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                voucherListGridView.DataSource = null;
+                voucherListGridView.DataBind();
 
-        //        if (drpdwnAccountOn.SelectedIndex == 0)
-        //        {
-        //            drpdwnSalesCenterOrWarehouse.Items.Clear();
-        //            LoadSalesCenters();
-        //            titleSalesCenterOrWarehouse.Text = "Sales Center";
-        //        }
-        //        else if (drpdwnAccountOn.SelectedIndex == 1)
-        //        {
-        //            drpdwnSalesCenterOrWarehouse.Items.Clear();
-        //            LoadWarehouse();
-        //            titleSalesCenterOrWarehouse.Text = "Warehouse";
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        string message = ex.Message;
-        //        if (ex.InnerException != null) { message += " --> " + ex.InnerException.Message; }
-        //        MyAlertBox("ErrorAlert(\"" + ex.GetType() + "\", \"" + message + "\", \"\");");
-        //    }
-        //}
+                if (drpdwnAccountOn.SelectedIndex == 0)
+                {
+                    drpdwnSalesCenterOrWarehouse.Items.Clear();
+                    LoadSalesCenters();
+                    titleSalesCenterOrWarehouse.Text = "Sales Center";
+                }
+                else if (drpdwnAccountOn.SelectedIndex == 1)
+                {
+                    drpdwnSalesCenterOrWarehouse.Items.Clear();
+                    LoadWarehouse();
+                    titleSalesCenterOrWarehouse.Text = "Warehouse";
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                if (ex.InnerException != null) { message += " --> " + ex.InnerException.Message; }
+                MyAlertBox("ErrorAlert(\"" + ex.GetType() + "\", \"" + message + "\", \"\");");
+            }
+        }
 
         private void LoadWarehouse()
         {

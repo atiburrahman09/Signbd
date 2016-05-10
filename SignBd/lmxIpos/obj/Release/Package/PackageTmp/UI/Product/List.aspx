@@ -112,7 +112,7 @@
                     var col = $(this).parent().children().parent().index();
                     var row = $(this).parent().parent().index();
                     productId = $("#productListGridView").find("tr td:nth-child(1)").eq(row).text();
-                    isActive = $("#productListGridView").find("tr td:nth-child(7)").eq(row).text();
+                    isActive = $("#productListGridView").find("tr td:nth-child(6)").eq(row).text();
 
                     var id = $(this).attr("id");
                     var str = $(this).attr("href");

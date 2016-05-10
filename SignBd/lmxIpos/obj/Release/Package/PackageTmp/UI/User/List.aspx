@@ -40,7 +40,7 @@
                                     <Columns>
                                         <asp:BoundField DataField="UserId" HeaderText="User ID" />
                                         <asp:BoundField DataField="UserName" HeaderText="User Name" />
-                                        <asp:BoundField DataField="EmployeeId" HeaderText="Employee ID" />
+                                      <%--  <asp:BoundField DataField="EmployeeId" HeaderText="Employee ID" />--%>
                                         <asp:BoundField DataField="UserGroupName" HeaderText="User Group Name" />
                                         <asp:BoundField DataField="IsActive" HeaderText="Active" />
                                         <asp:TemplateField HeaderText="">

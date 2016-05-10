@@ -1,5 +1,5 @@
 E:\Atib\Projects\signbd\SignBd\Lumex.Project\bin\Debug\Lumex.Project.dll
 E:\Atib\Projects\signbd\SignBd\Lumex.Project\bin\Debug\Lumex.Project.pdb
-E:\Atib\Projects\signbd\SignBd\Lumex.Project\obj\Debug\Lumex.Project.csprojResolveAssemblyReference.cache
 E:\Atib\Projects\signbd\SignBd\Lumex.Project\obj\Debug\Lumex.Project.dll
 E:\Atib\Projects\signbd\SignBd\Lumex.Project\obj\Debug\Lumex.Project.pdb
+E:\Atib\Projects\signbd\SignBd\Lumex.Project\obj\Debug\Lumex.Project.csprojResolveAssemblyReference.cache

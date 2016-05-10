@@ -49,7 +49,7 @@
                         </div>
                         <div class="widget-separator grid-6">
                             <div class="grid-4">
-                                Record Id & Sales Person:
+                                Rec. Id & Sales Person:
                             </div>
                             <div class="grid-8">
                                 <asp:Label ID="salesRecordIdlavel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
@@ -156,6 +156,22 @@
                         </div>
                         <div class="widget-separator grid-6">
                             <div class="grid-4">
+                                Others Sales :
+                            </div>
+                            <div class="grid-8">
+                                <asp:Label ID="lblOthersDescription" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="widget-separator grid-6">
+                            <div class="grid-4">
+                                Others Sales Amount:
+                            </div>
+                            <div class="grid-8">
+                                <asp:Label ID="lblOthersAmount" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="widget-separator grid-6">
+                            <div class="grid-4">
                                 Discount:
                             </div>
                             <div class="grid-8">
@@ -164,20 +180,22 @@
                         </div>
                         <div class="widget-separator grid-6">
                             <div class="grid-4">
-                                VAT (%):
+                                VAT (%) & Total Amount:
                             </div>
                             <div class="grid-8">
                                 <asp:Label ID="vatPercentageLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                &nbsp;
+                                <asp:Label ID="totalVATAmountLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+
                             </div>
                         </div>
-                        <div class="widget-separator grid-6">
+                        <%-- <div class="widget-separator grid-6">
                             <div class="grid-4">
                                 Total VAT Amount:
                             </div>
                             <div class="grid-8">
-                                <asp:Label ID="totalVATAmountLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
                             </div>
-                        </div>
+                        </div>--%>
                         <div class="widget-separator grid-6">
                             <div class="grid-4">
                                 Total Receivable:
@@ -194,12 +212,20 @@
                                 <asp:Label ID="receivedAmountLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
                             </div>
                         </div>
-                        <div class="widget-separator grid-3">
+                        <div class="widget-separator grid-6">
                             <div class="grid-4">
                                 Status:
                             </div>
                             <div class="grid-8">
                                 <asp:Label ID="statusLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="widget-separator grid-6">
+                            <div class="grid-4">
+                                Narration:
+                            </div>
+                            <div class="grid-8">
+                                <asp:Label ID="lblNaration" runat="server" Text="" CssClass="infoLabel"></asp:Label>
                             </div>
                         </div>
 
@@ -308,9 +334,9 @@
 
                 <div class="widget-separator grid-12">
                     <div class="grid-12 text-center">
-                        
-                            <asp:Button ID="btnAccept" runat="server" Text="Approve to confirm Sales Record Product Stock" CssClass="pull-right grid-3 btn btn-submit btn-3d" Style="margin-right: 10px;" OnClick="btnAccept_Click"/>
-                        
+
+                        <asp:Button ID="btnAccept" runat="server" Text="Approve to confirm Sales Record Product Stock" CssClass="pull-right grid-3 btn btn-submit btn-3d" Style="margin-right: 10px;" OnClick="btnAccept_Click" />
+
                         <%--   <div class="grid-6">
                             <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="pull-left grid-3 btn btn-error btn-3d" Style="margin-left: 10px;" />
                         </div>--%>

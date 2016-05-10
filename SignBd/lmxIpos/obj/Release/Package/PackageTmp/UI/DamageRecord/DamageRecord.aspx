@@ -34,7 +34,7 @@
                     </header>
                     <div class="widget-body no-padding">
                         <div class="widget-separator no-padding grid-12">
-                           <%-- <div class="widget-separator no-border grid-3">
+                            <%-- <div class="widget-separator no-border grid-3">
                                 <h5 class="typo">Check at
                                 </h5>
                                 <asp:DropDownList ID="chkatDropdownList" runat="server" CssClass="form form-full" AutoPostBack="true"
@@ -71,7 +71,7 @@
                                 <asp:GridView ID="selectedProductListGridView" runat="server" AutoGenerateColumns="false"
                                     CssClass="table table-hover gridView">
                                     <Columns>
-                                        <asp:BoundField DataField="Barcode" HeaderText="Barcode" />
+                                        <asp:BoundField DataField="Barcode" HeaderText="Barcode" Visible="false" />
                                         <asp:BoundField DataField="ProductId" HeaderText="Product ID" />
                                         <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
                                         <asp:BoundField DataField="FreeQuantity" HeaderText="Available" />
@@ -169,12 +169,14 @@
 <asp:Content ID="scriptContent" ContentPlaceHolderID="scriptContentPlaceHolder" runat="server">
     <script type="text/javascript">
         function pageLoad(sender, args) {
+
+            console.log("ENter");
             $('.modal-backdrop').remove();
             var checkedRowCount = $("#checkedRowCountHiddenField").val();
 
             $.ajax({
                 type: "POST",
-                url: "/Services/ProductSearchforSale.ashx?id=" + $('#salesCenterDropDownList').val(),
+                url: "/Services/productAvaiablebycenter.ashx?id=" + $('#salesCenterDropDownList').val(),
                 success: function (d) {
                     var array = [];
                     d.split(';').forEach(function (value) {
@@ -232,7 +234,7 @@
                 "aLengthMenu": [[10, 15, 20, -1], [10, 15, 20, "All"]],
                 "iDisplayLength": -1,
                 "bSort": false,
-                //"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [0, 1, 2, 3, 4, 5, 6, 7]}],
+                "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [0, 1, 2, 3, 4, 5, 6, 7] }],
                 "bFilter": false,
                 "bLengthChange": true,
                 "bPaginate": false,
@@ -250,11 +252,12 @@
                 "sPaginationType": "full_numbers",
                 "aLengthMenu": [[-1], ["All"]],
                 "iDisplayLength": -1,
-                "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [5, 6, 7] }],
+                "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [0, 6] }],
                 "bFilter": true,
                 "bLengthChange": true,
                 "bPaginate": false,
                 "bInfo": true
+
             });
 
             $("#allCheckBox").click(function () {

@@ -2,10 +2,25 @@
     CodeBehind="RetailSalesList.aspx.cs" Inherits="lmxIpos.UI.Sales.RetailSalesList" %>
 
 <asp:Content ID="headContent" ContentPlaceHolderID="headContentPlaceHolder" runat="server">
+    <script type="text/javascript">
+        function ExportReportForm() {
+            window.open("/ReportExport.aspx", "_blank");
+        }
+        function ViewReportForm() {
+            window.open("/ReportView.aspx", "_blank");
+        }
+        function ViewApprovedSalesDetail() {
+            window.open("/UI/Sales/ApprovedRetailSales.aspx");
+        }
+        function ViewApproveSalesDetail() {
+            window.open("/UI/Sales/ApproveRetailSales.aspx");
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="bodyContent" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
     <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="UpdatePanel1" ChildrenAsTriggers="true">
         <ContentTemplate>
+           
             <div class="title-sitemap grid-12">
                 <h1 class="grid-8">
                     <i>&#xf132;</i>Sales Record List<span>Sales Record List</span></h1>
@@ -91,6 +106,7 @@
                                     <asp:ListItem Value="All">All</asp:ListItem>
                                     <asp:ListItem Value="A">Approved</asp:ListItem>
                                     <asp:ListItem Value="P">Pending</asp:ListItem>
+                                    <asp:ListItem Value="R">Rejected</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div class="widget-separator no-border grid-3">
@@ -120,6 +136,18 @@
                                                     OnClick="viewLinkButton_Click">View</asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="editLinkButton" runat="server" CssClass="btn btn-mini btn-warning"
+                                                    OnClick="editLinkButton_OnClick">Edit</asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Invoice">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="printInvoiceButton" runat="server" CssClass="btn btn-mini btn-success" Text="Print Invoice"
+                                                    OnClick="printInvoiceButton_OnClick"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -131,6 +159,7 @@
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="recordListButton" EventName="Click" />
             <asp:AsyncPostBackTrigger ControlID="salesRecordListGridView" EventName="RowDataBound" />
+            <%--<asp:AsyncPostBackTrigger ControlID="printInvoiceButton" EventName="Click" />--%>
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
@@ -139,21 +168,7 @@
         function pageLoad(sender, args) {
 
             $(".date-textbox").datepicker();
-            //            $(".date-textbox, .icon-calendar").click(function () {
-            //                $(this).parent().find(".date-textbox").focus();
-            //            });
 
-            //            $("#salesCenterDropDownList").rules("add", {
-            //                required: true
-            //            });
-
-            //            $("#fromDateTextBox").rules("add", {
-            //                required: true
-            //            });
-
-            //            $("#toDateTextBox").rules("add", {
-            //                required: true
-            //            });
 
             $("#salesRecordListGridView").dataTable({
                 "bProcessing": true,
@@ -161,7 +176,7 @@
                 "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 "iDisplayLength": -1,
                 "bSort": true,
-                "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [5, 6, 7] }],
+                "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [5, 6, 7, 8, 9] }],
                 "bFilter": true,
                 "bLengthChange": true,
                 "bPaginate": true,

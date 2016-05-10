@@ -2,6 +2,14 @@
     CodeBehind="CreateCreditVoucherCheque.aspx.cs" Inherits="lmxIpos.UI.AccUI.CreditVoucher.CreateCreditVoucherCheque" %>
 
 <asp:Content ID="headContent" ContentPlaceHolderID="headContentPlaceHolder" runat="server">
+    <script type="text/javascript">
+        function ExportReportForm() {
+            window.open("/ReportExport.aspx", "_blank");
+        }
+        function ViewReportForm() {
+            window.open("/ReportView.aspx", "_blank");
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="bodyContent" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
     <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="UpdatePanel1" ChildrenAsTriggers="True">
@@ -157,7 +165,9 @@
                             </div>
                         </div>
                         <div class="widget-separator no-border grid-12">
-                            <asp:Button ID="saveButton" runat="server" Text="Save" CssClass="btn btn-submit btn-3d"
+                            <asp:Button ID="saveButton" runat="server" Text="Save" CssClass="btn btn-submit btn-3d" CommandArgument="1"
+                                OnClick="saveButton_Click" />
+                            <asp:Button ID="saveandprintButton" runat="server" Text="Save And Print" CssClass="btn btn-info btn-3d" CommandArgument="2"
                                 OnClick="saveButton_Click" />
                         </div>
                     </div>

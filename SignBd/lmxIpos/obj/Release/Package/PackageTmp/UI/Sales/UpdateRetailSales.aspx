@@ -1,0 +1,541 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/App.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="UpdateRetails.aspx.cs" Inherits="lmxIpos.UI.Sales.UpdateRetailSales" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="headContentPlaceHolder" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
+    <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="UpdatePanel1" ChildrenAsTriggers="true">
+        <ContentTemplate>
+            <div class="title-sitemap grid-12">
+                <h1 class="grid-8">
+                    <i>&#xf132;</i>Sales Center Sales Update<span>Sales Center Sales Update</span></h1>
+                <div class="sitemap grid-6">
+                    <%--  <ul>
+                        <li><span>IPOS</span><i>/</i></li>
+                        <li><a href="/Default.aspx">Dashboard</a></li>
+                    </ul>--%>
+                </div>
+            </div>
+            <div class="data">
+                <div id="msgbox" runat="server" visible="false" class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">
+                        &times;</button>
+                    <h4>
+                        <asp:Label ID="msgTitleLabel" runat="server" Text=""></asp:Label>
+                    </h4>
+                    <asp:Label ID="msgDetailLabel" runat="server" Text=""></asp:Label>
+                </div>
+                <div class="widget">
+                    <header class="widget-header">
+                        <div class="widget-header-icon">
+                            
+                        </div>
+                        <h3 id="Header3" runat="server" class="widget-header-title">Sales Center Sales Update of
+                    <asp:Label ID="idLabel" runat="server" Text=""></asp:Label></h3>
+                    </header>
+                    <div class="widget-body no-padding">
+
+                        <div class="widget-separator no-border grid-12">
+                        </div>
+                        <div class="widget-separator">
+                            <h4>Sales Information</h4>
+                        </div>
+                        <div id="orderInfoContainer">
+                            <div class="grid-12">
+                                <div class="widget-separator grid-6">
+                                    <div class="grid-4">
+                                        Record Date:
+                                    </div>
+                                    <div class="grid-8">
+                                        <asp:Label ID="recordDateLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="widget-separator grid-6">
+                                    <div class="grid-4">
+                                        Rec. Id & Sales Person:
+                                    </div>
+                                    <div class="grid-8">
+                                        <asp:Label ID="salesRecordIdlavel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                        &nbsp;
+                                        <asp:Label ID="lblSalesPerson" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="grid-12">
+                                <div class="widget-separator grid-6">
+                                    <div class="grid-4">
+                                        Business ID & Name:
+                                    </div>
+                                    <div class="grid-8">
+                                        <asp:Label ID="salesCenterIdLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                        &nbsp;
+                                <asp:Label ID="salesCenterNameLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+
+                                    </div>
+                                </div>
+
+                                <div class="widget-separator grid-6">
+                                    <div class="grid-4">
+                                        Customer ID & Name:
+                                    </div>
+                                    <div class="grid-8">
+                                        <asp:Label ID="customerIdLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                        &nbsp;
+                                  <asp:Label ID="customerNameLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="widget-separator grid-6">
+                                    <div class="grid-4">
+                                        Customer Contact:
+                                    </div>
+                                    <div class="grid-8">
+                                        <asp:Label ID="customerContactLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="widget-separator grid-6">
+                                    <div class="grid-4">
+                                        Customer Address:
+                                    </div>
+                                    <div class="grid-8">
+                                        <asp:Label ID="customerAddressLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid-12">
+                                <div class="widget-separator grid-6">
+                                    <div class="grid-4">
+                                        Account ID:
+                                    </div>
+                                    <div class="grid-8">
+                                        <asp:Label ID="accountIdLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="widget-separator grid-6">
+                                    <div class="grid-4">
+                                        Journal Vouchar:
+                                    </div>
+                                    <div class="grid-8">
+                                        <asp:Label ID="journalVoucharLavel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="widget-separator grid-6">
+                                    <div class="grid-4">
+                                        Payment Method:
+                                    </div>
+                                    <div class="grid-8">
+                                        <asp:Label ID="paymentMethodLavel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="widget-separator grid-6">
+                                    <div class="grid-4">
+                                        Bank / Bank Branch:
+                                    </div>
+                                    <div class="grid-8">
+                                        <asp:Label ID="banklabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                        &nbsp;
+                                 <asp:Label ID="bankBranchlabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="widget-separator grid-6">
+                                    <div class="grid-4">
+                                        Cheque Number:
+                                    </div>
+                                    <div class="grid-8">
+                                        <asp:Label ID="ChequeNumberLavel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="widget-separator grid-6">
+                                    <div class="grid-4">
+                                        Cheque Date:
+                                    </div>
+                                    <div class="grid-8">
+                                        <asp:Label ID="ChequeDateLavel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <%--Editable Informations--%>
+                                <div class="widget-separator no-padding grid-12">
+
+                                    <div class="widget-separator">
+                                        <h4>Editable Sales Information</h4>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="widget-separator grid-12">
+                                        <div id="selectedProductListGridContainer" style="font-size: 12px;">
+                                            <asp:GridView ID="selectedProductListGridView" runat="server" AutoGenerateColumns="False"
+                                                CssClass="table table-hover gridView responsive">
+                                                <Columns>
+                                                    <%-- <asp:BoundField DataField="Barcode" HeaderText="Barcode" />--%>
+                                                    <asp:BoundField DataField="ProductId" HeaderText="Product ID" />
+                                                    <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
+
+
+                                                    <%-- <asp:BoundField DataField="FreeQuantity" HeaderText="Available" HtmlEncode="False" HtmlEncodeFormatString="False" />--%>
+                                                    <asp:TemplateField HeaderText="Height">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="heightTextBox" runat="server" Width="40" Text='<%# Eval("Height") %>' CssClass="oQty-rpu-amt-cal validQty autoCompeleteOff"></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Width">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="WidthTextBox" runat="server" Text='<%# Eval("Width") %>' Width="40" CssClass="oQty-rpu-amt-cal validQty autoCompeleteOff"></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Qty.">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="UnitTextBox" runat="server" Text='<%# Eval("OrderUnit") %>' Width="40" CssClass="oQty-rpu-amt-cal validQty autoCompeleteOff"></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Total Qty.">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="totalUnitTextBox" runat="server" Text='<%# Eval("TotalUnit") %>' Width="40" CssClass="oQty-rpu-amt-cal validQty autoCompeleteOff"></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Sale Qty.">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="orderQuantityTextBox" runat="server" Text='<%# Eval("Quantity") %>' Width="40" CssClass="oQty-rpu-amt-cal validQty autoCompeleteOff"></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Rate">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="ratePerUnitTextBox" runat="server" Text='<%# Eval("RatePerUnit") %>' Width="40" CssClass="oQty-rpu-amt-cal autoCompeleteOff"></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="VAT(%)">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblVatparcentage" runat="server" Text='<%# Eval("VATPercentage") %>' CssClass="form form-full"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Amount +VAT">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="amountTextBox" runat="server" Text='<%# Eval("Amount") %>' Width="50" CssClass="read-only autoCompeleteOff"></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Serial" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="SerialLabel" runat="server" Text='<%# Eval("Serial") %>' Width="50" CssClass="read-only autoCompeleteOff"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="row-fluid">
+                                        <div class="widget-separator grid-12">
+                                            <div class="grid-8">
+                                                <h4 class="typo">Others Sales</h4>
+                                            </div>
+                                            <div class="widget-separator no-border grid-12">
+                                                <div class="widget-separator no-border grid-4">
+                                                    <h5 class="typo">Description</h5>
+                                                    <asp:TextBox ID="txtbxDescription" runat="server" CssClass="form form-full" placeholder="Description">
+                                                    </asp:TextBox>
+                                                </div>
+                                                <div class="widget-separator no-border grid-4">
+                                                    <h5 class="typo">Amount</h5>
+                                                    <asp:TextBox ID="txtbxOthersAmount" runat="server" CssClass="form form-full" onfocus="this.select()" Text="0.00" placeholder="Amount"></asp:TextBox>
+                                                </div>
+                                                <div class="widget-separator no-border grid-4">
+                                                    <h5 class="typo">Narration</h5>
+                                                    <asp:TextBox ID="txtbxNarration" runat="server" CssClass="form form-full" placeholder="Narration">
+                                                    </asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid-6 ">
+                                        <div class="widget-separator no-border grid-12 " style="padding: 5px 10px!important;">
+                                            <div class="grid-6">
+                                                <h5 class="typo">Total&nbsp;&nbsp;&nbsp;</h5>
+                                            </div>
+                                            <div class="grid-4">
+                                                <asp:TextBox ID="totalAmountTextBox" CssClass="form form-full" runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="grid-2">
+                                                <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="*" ControlToValidate="totalAmountTextBox"
+                                                    ValidationGroup="2" Type="Currency" Operator="DataTypeCheck" ForeColor="Red"
+                                                    Visible="true"> </asp:CompareValidator>
+                                            </div>
+                                        </div>
+
+                                        <div class="widget-separator no-border grid-12 " style="padding: 5px 10px!important;">
+                                            <div class="grid-6">
+                                                <h5 class="typo">Discount &nbsp;&nbsp;&nbsp;</h5>
+                                            </div>
+                                            <div class="grid-4">
+                                                <asp:TextBox ID="discountTextBox" CssClass="form form-full " PlaceHolder="0.00"
+                                                    runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="grid-2">
+                                                <asp:CompareValidator ID="CompareValidator3" runat="server" ErrorMessage="*" ControlToValidate="receivedAmountTextBox"
+                                                    ValidationGroup="2" Type="Currency" Operator="DataTypeCheck" ForeColor="Red"
+                                                    Visible="true"> </asp:CompareValidator>
+                                            </div>
+                                        </div>
+                                        <%--  <div class="widget-separator no-border grid-12 " style="padding: 5px 10px!important;">
+                                            <div class="grid-6">
+                                                <h5 class="typo">Other Sale Amount&nbsp;&nbsp;&nbsp;</h5>
+                                            </div>
+                                            <div class="grid-4">
+                                                <asp:TextBox ID="otherSaleAmounttxtbx" CssClass="form form-full" runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="grid-2">
+                                                <asp:CompareValidator ID="CompareValidator6" runat="server" ErrorMessage="*" ControlToValidate="otherSaleAmounttxtbx"
+                                                    ValidationGroup="2" Type="Currency" Operator="DataTypeCheck" ForeColor="Red"
+                                                    Visible="true"> </asp:CompareValidator>
+                                            </div>
+                                        </div>--%>
+                                        <div class="widget-separator no-border grid-12 " style="padding: 5px 10px!important;">
+                                            <div class="grid-6">
+                                                <h5 class="typo">VAT (%)&nbsp;&nbsp;&nbsp;</h5>
+                                            </div>
+                                            <div class="grid-4">
+                                                <asp:TextBox ID="vatTextBox" CssClass="form form-full " PlaceHolder="VAT (%)"
+                                                    runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="grid-2">
+                                                <asp:CompareValidator ID="CompareValidator4" runat="server" ErrorMessage="*" ControlToValidate="receivedAmountTextBox"
+                                                    ValidationGroup="2" Type="Currency" Operator="DataTypeCheck" ForeColor="Red"
+                                                    Visible="true"> </asp:CompareValidator>
+                                                <asp:CompareValidator ID="CompareValidator5" runat="server" ErrorMessage="*" ControlToValidate="receivedAmountTextBox"
+                                                    ValidationGroup="2" Type="Currency" Operator="DataTypeCheck" ForeColor="Red"
+                                                    Visible="true"> </asp:CompareValidator>
+                                            </div>
+                                        </div>
+                                        <div class="widget-separator no-border grid-12" style="padding: 5px 10px!important;">
+                                            <div class="grid-6">
+                                                <h5 class="typo">Receivable&nbsp;&nbsp;&nbsp;</h5>
+                                            </div>
+                                            <div class="grid-4">
+                                                <asp:TextBox ID="receivableAmountTextBox" Font-Bold="true" CssClass="form form-full"
+                                                    PlaceHolder="0.00" runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="grid-2">
+                                                <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="*" ControlToValidate="receivableAmountTextBox"
+                                                    ValidationGroup="2" Type="Currency" Operator="DataTypeCheck" ForeColor="Red" Display="Dynamic"
+                                                    Visible="true"> </asp:CompareValidator>
+                                            </div>
+                                        </div>
+                                        <div class="widget-separator no-border grid-12 " style="padding: 5px 10px!important;">
+                                            <div class="grid-6">
+                                                <h5 class="typo">Received&nbsp;&nbsp;&nbsp;</h5>
+                                            </div>
+                                            <div class="grid-4">
+                                                <asp:TextBox ID="receivedAmountTextBox" onfoucs="this.select()" CssClass="form form-full "
+                                                    PlaceHolder="0.00" runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="grid-2">
+                                                <asp:CompareValidator ID="cmpVldCurrency" runat="server" ErrorMessage="*" ControlToValidate="receivedAmountTextBox"
+                                                    ValidationGroup="2" Type="Currency" Operator="DataTypeCheck" ForeColor="Red"
+                                                    Visible="true"> </asp:CompareValidator>
+                                            </div>
+                                        </div>
+                                        <div class="widget-separator no-border grid-12" style="padding: 5px 10px!important;">
+                                            <div class="grid-6">
+                                                <h5 class="typo">Change&nbsp;&nbsp;&nbsp;</h5>
+                                            </div>
+                                            <div class="grid-4">
+                                                <asp:TextBox ID="changeAmountTextBox" ForeColor="red" Font-Size="14px" CssClass="read-only form form-full text-error bold"
+                                                    runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="grid-2">
+                                                &nbsp;
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget-separator grid-12">
+                        <div class="grid-6">
+                            <asp:Button ID="btnUpdate" runat="server" Text="Update Sales" CssClass="pull-right grid-3 btn btn-submit btn-3d" Style="margin-right: 10px;" OnClick="btnUpdate_OnClick" />
+                        </div>
+                        <div class="grid-6">
+                            <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="pull-left grid-3 btn btn-error btn-3d" Style="margin-left: 10px; " OnClick="btnReject_OnClick" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+            </div>
+            <asp:HiddenField ID="salesRecordIdForViewHiddenField" runat="server" />
+            <asp:HiddenField ID="checkedRowCountHiddenField" runat="server" />
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="selectedProductListGridView" EventName="RowDataBound" />
+        </Triggers>
+    </asp:UpdatePanel>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="scriptContentPlaceHolder" runat="server">
+    <script type="text/javascript">
+        function pageLoad(sender, args) {
+
+            $("#selectedProductListGridView").dataTable({
+                "bProcessing": true,
+                "sPaginationType": "full_numbers",
+                "aLengthMenu": [[10, 15, 20, 25, 50, 100, -1], [10, 15, 20, 25, 50, 100, "All"]],
+                "iDisplayLength": -1,
+                "bSort": false,
+                //"aoColumnDefs": [{ 'bSortable': false, 'aTargets': [5, 6]}],
+                "bFilter": false,
+                "bLengthChange": true,
+                "bPaginate": false,
+                "bInfo": true
+            });
+
+            ////////////////////////// Calculation ////////////////////////////////
+
+            function TotalAmountCalculation() {
+                var tAmt = 0;
+                $("#selectedProductListGridView tr").each(function () {
+                    if (!isNaN(+$(this).find("[id*=amountTextBox]").val())) {
+                        tAmt = tAmt + +$(this).find("[id*=amountTextBox]").val();
+
+                    }
+                });
+                tAmt = tAmt + +$("#txtbxOthersAmount").val();
+                $("#totalAmountTextBox").val(tAmt);
+
+
+
+            }
+
+            function OthersCalculation() {
+                var netAmt = 0;
+                var totalAmt = 0;
+                var discount = 0;
+                var vat = 0;
+                var receivable = 0;
+                var received = 0;
+                var due = 0;
+                var change = 0;
+                var proheight = 0;
+                var prowidth = 0;
+                var OrderUnit = 0;
+                var Totalunit = 0;
+                var OthersAmount = 0;
+
+                if (!isNaN(+$("#totalAmountTextBox").val())) {
+                    totalAmt = $("#totalAmountTextBox").val();
+                }
+
+                if (!isNaN(+$("#txtbxOthersAmount").val())) {
+                    OthersAmount = $("#txtbxOthersAmount").val();
+                }
+
+                if (!isNaN(+$("#discountTextBox").val())) {
+                    discount = $("#discountTextBox").val();
+                }
+
+                if (!isNaN(+$("#vatTextBox").val())) {
+                    vat = $("#vatTextBox").val();
+                }
+
+                if (!isNaN(+$("#receivableAmountTextBox").val())) {
+                    receivable = $("#receivableAmountTextBox").val();
+                }
+
+                if (!isNaN(+$("#receivedAmountTextBox").val())) {
+                    received = $("#receivedAmountTextBox").val();
+                }
+
+                if (!isNaN(+$("#DuesAmoutPayTextBox").val())) {
+                    due = $("#DuesAmoutPayTextBox").val();
+                }
+
+                if (!isNaN(+$("#changeAmountTextBox").val())) {
+                    change = $("#changeAmountTextBox").val();
+                }
+
+                totalAmt = parseFloat(totalAmt);
+                netAmt = (totalAmt) - discount;
+                receivable = netAmt + (netAmt * vat / 100);
+
+
+                $("#totalVATAmountHiddenField").val(netAmt * vat / 100);
+                $("#receivableAmountTextBox").val(receivable);
+                $("#changeAmountTextBox").val(received - receivable);
+
+                //if (due > 0 && due <= change) {
+                $("#changeAmountTextBox").val((received - receivable) - due);
+                //}
+                //$("#changeAmountTextBox").val(received - inTotal);
+
+                $("#vatTextBox").val(vat);
+                $("#discountTextBox").val(discount);
+
+            }
+
+            $("#discountTextBox").on("change keyup", function () {
+                OthersCalculation();
+            });
+
+            $("#vatTextBox").on("change keyup", function () {
+                OthersCalculation();
+            });
+
+            $("#receivableAmountTextBox").on("change keyup", function () {
+                OthersCalculation();
+            });
+
+            $("#receivedAmountTextBox").on("change keyup", function () {
+                OthersCalculation();
+            });
+
+            $("#DuesAmoutPayTextBox").on("change keyup", function () {
+                OthersCalculation();
+            });
+
+            $("#txtbxOthersAmount").on("change keyup", function () {
+                TotalAmountCalculation();
+                OthersCalculation();
+            });
+
+
+            $(".oQty-rpu-amt-cal").on("change keyup", function () {
+
+                var proheight = +$(this).closest('tr').find("[id*=heightTextBox]").val();
+                var prowidth = +$(this).closest('tr').find("[id*=WidthTextBox]").val();
+                var orderunit = +$(this).closest('tr').find("[id*=UnitTextBox]").val();
+                var totalunit = 0;
+                if (parseFloat(proheight) > 0 || parseFloat(prowidth) > 0) {
+                    var totalunit = (proheight * prowidth) * orderunit;
+                } else {
+                    var totalunit = orderunit;
+                }
+
+
+                $(this).parent().parent().find("[id*=totalUnitTextBox]").val(totalunit);
+
+                var qty = +$(this).closest('tr').find("[id*=orderQuantityTextBox]").val();
+
+                var rate = +$(this).closest('tr').find("[id*=ratePerUnitTextBox]").val();
+
+
+                var vat = +$(this).closest('tr').find("[id*=lblVatparcentage]").val();
+                var amt = qty * rate;
+                var amt = amt + (amt * vat / 100);
+                $(this).parent().parent().find("[id*=amountTextBox]").val(amt);
+
+                TotalAmountCalculation();
+                OthersCalculation();
+                // }
+
+            });
+
+
+        };
+
+    </script>
+</asp:Content>

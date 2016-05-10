@@ -164,10 +164,10 @@
                             </div>
                             <!-- User Notifications -->
                             <div class="User-Notifiacation-top">
-                                <ul class="user-notifications">
+                            <%--    <ul class="user-notifications">
                                     <li id="u-top-logs-toggle">&#xf0ac;<span>0</span></li>
                                     <li id="u-top-msg-toggle">&#xf003;<span>0</span></li>
-                                </ul>
+                                </ul>--%>
                                 <!-- User Options -->
                                 <ul class="user-options u-top-logs-toggle">
                                     <li>

@@ -1,0 +1,11 @@
+http://www.codeproject.com/Articles/30860/How-to-dynamically-load-images-in-Crystal-Reports
+
+
+http://csharpdotnetfreak.blogspot.com/2012/06/crystal-reports-display-images-database.html
+
+http://www.codeproject.com/Articles/30860/How-to-dynamically-load-images-in-Crystal-Reports
+
+https://dotnetbd.wordpress.com/2008/06/20/display-dynamic-image-in-crystal-report-net/
+
+http://www.nullskull.com/q/10292231/how-to-display-image-on-crystal-report-in-c.aspx
+

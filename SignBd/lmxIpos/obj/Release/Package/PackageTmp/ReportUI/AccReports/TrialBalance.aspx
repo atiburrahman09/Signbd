@@ -62,23 +62,37 @@
                             </div>
                             <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
-                                    <h5 class="typo">
-                                        Query Date</h5>
+                                    <h5 class="typo">Date </h5>
                                 </div>
                                 <div class="grid-11">
                                     <div class="grid-1">
                                         <i class="icon-calendar"></i>
                                     </div>
                                     <div class="grid-11">
-                                        <asp:TextBox ID="queryDateTextBox" CssClass="date-textbox form form-full" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="fromDateTextBox" CssClass="date-textbox form form-full" runat="server"
+                                            autocomplete="off"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
+                            <%--<div class="widget-separator no-border grid-3">
+                                <div class="grid-12">
+                                    <h5 class="typo">Date To</h5>
+                                </div>
+                                <div class="grid-11">
+                                    <div class="grid-1">
+                                        <i class="icon-calendar"></i>
+                                    </div>
+                                    <div class="grid-11">
+                                        <asp:TextBox ID="toDateTextBox" CssClass="date-textbox form form-full" runat="server"
+                                            autocomplete="off"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>--%>
                             <div class="widget-separator no-border grid-4">
                                 <asp:Button ID="generateButton" runat="server" Text="Generate Report" CssClass="btn btn-info"
                                     OnClick="generateButton_Click" />
                                 <asp:Button ID="exportButton" runat="server" Text="Export Report" CssClass="btn btn-info"
-                                    OnClick="exportButton_Click" />
+                                    OnClick="exportButton_Click" Visible="false" />
                             </div>
                         </div>
                     </div>

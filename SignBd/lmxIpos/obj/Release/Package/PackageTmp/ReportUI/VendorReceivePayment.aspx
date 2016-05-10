@@ -36,25 +36,24 @@
                 <div class="widget">
                     <header class="widget-header">
                         <div class="widget-header-icon">
-                            </div>
-                        <h3 id="Header3" runat="server" class="widget-header-title">
-                            System Vendor Receive Payment Report</h3>
+                            
+                        </div>
+                        <h3 id="Header3" runat="server" class="widget-header-title">System Vendor Receive Payment Report</h3>
                     </header>
                     <div class="widget-body no-padding">
                         <div class="widget-separator grid-12">
-                            <div class="widget-separator no-border grid-3">
+                          <%--  <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
-                                    <h5 class="typo">
-                                        Report On</h5>
+                                    <h5 class="typo">Report On</h5>
                                 </div>
                                 <div class="grid-12">
                                     <asp:DropDownList ID="drpdwnReportOn" runat="server" CssClass="form form-full" OnSelectedIndexChanged="drpdwnReportOn_SelectedIndexChanged"
                                         AutoPostBack="true">
-                                       <%-- <asp:ListItem>Sales Center</asp:ListItem>--%>
+                                         <asp:ListItem>Sales Center</asp:ListItem>
                                         <asp:ListItem Value="Warehouse">Business</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
                                     <h5 class="typo">
@@ -76,8 +75,7 @@
                             </div>--%>
                             <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
-                                    <h5 class="typo">
-                                        Date From</h5>
+                                    <h5 class="typo">Date From</h5>
                                 </div>
                                 <div class="grid-11">
                                     <div class="grid-1">
@@ -91,8 +89,7 @@
                             </div>
                             <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
-                                    <h5 class="typo">
-                                        Date To</h5>
+                                    <h5 class="typo">Date To</h5>
                                 </div>
                                 <div class="grid-11">
                                     <div class="grid-1">
@@ -106,19 +103,17 @@
                             </div>
                             <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
-                                    <h5 class="typo">
-                                        Vendor Name</h5>
+                                    <h5 class="typo">Vendor Name</h5>
                                 </div>
                                 <div class="grid-11">
-                                    <asp:DropDownList ID="vendorDropDownList" runat="server" CssClass="form form-full"
+                                    <asp:DropDownList ID="vendorDropDownList" runat="server" CssClass="form form-full chosen-select"
                                         required="required">
                                     </asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="widget-separator no-border grid-3">
+                          <%--  <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
-                                    <h5 class="typo">
-                                        Report On</h5>
+                                    <h5 class="typo">Report On</h5>
                                 </div>
                                 <div class="grid-12">
                                     <asp:DropDownList ID="statusDropDownList" runat="server" CssClass="form form-full"
@@ -127,13 +122,13 @@
                                         <asp:ListItem>Pending</asp:ListItem>
                                         <asp:ListItem>Approved</asp:ListItem>
                                     </asp:DropDownList>
-                                </div>
-                            </div>
+                                </d--%>
+                           
                             <div class="widget-separator no-border grid-4" style="margin-top: 29px;">
                                 <asp:Button ID="generateButton" runat="server" Text="Generate Report" CssClass="btn btn-info"
                                     OnClick="generateButton_Click" />
-                                <asp:Button ID="exportButton" runat="server" Text="Export Report" CssClass="btn btn-info"
-                                    OnClick="exportButton_Click" />
+                                <%--<asp:Button ID="exportButton" runat="server" Text="Export Report" CssClass="btn btn-info"
+                                    OnClick="exportButton_Click" Visible="false" />--%>
                             </div>
                         </div>
                     </div>
@@ -141,9 +136,9 @@
             </div>
         </ContentTemplate>
         <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="drpdwnReportOn" EventName="SelectedIndexChanged" />
+           <%-- <asp:AsyncPostBackTrigger ControlID="drpdwnReportOn" EventName="SelectedIndexChanged" />--%>
             <asp:AsyncPostBackTrigger ControlID="generateButton" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="exportButton" EventName="Click" />
+            <%--<asp:AsyncPostBackTrigger ControlID="exportButton" EventName="Click" />--%>
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
@@ -162,6 +157,17 @@
             $(".date-textbox, .icon-calendar").click(function () {
                 $(this).parent().find(".date-textbox").focus();
             });
+
+            var config = {
+                '.chosen-select': {},
+                '.chosen-select-deselect': { allow_single_deselect: true },
+                '.chosen-select-no-single': { disable_search_threshold: 20 },
+                '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+                '.chosen-select-width': { width: "96%" }
+            };
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
         }
     </script>
 </asp:Content>

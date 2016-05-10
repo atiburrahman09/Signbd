@@ -92,7 +92,7 @@
                                 <asp:Button ID="generateButton" runat="server" Text="Generate Report" CssClass="btn btn-info"
                                     OnClick="generateButton_Click" />
                                 <asp:Button ID="exportButton" runat="server" Text="Export Report" CssClass="btn btn-info"
-                                    OnClick="exportButton_Click" />
+                                    OnClick="exportButton_Click"  Visible="false"/>
                             </div>
                         </div>
                     </div>

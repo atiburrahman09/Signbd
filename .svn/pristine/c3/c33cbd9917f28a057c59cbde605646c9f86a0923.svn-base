@@ -1,0 +1,6 @@
+﻿body {
+}
+  .widget .widget-separator {
+    padding: 5px 10px!important;
+    border-bottom: 1px solid #ececec;
+}

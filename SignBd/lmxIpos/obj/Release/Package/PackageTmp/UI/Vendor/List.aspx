@@ -5,7 +5,7 @@
     <link href="/Content/Style/CSSPages/VendorList.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="bodyContent" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
-    <asp:UpdatePanel runat="server"  ID="UpdatePanel1" ChildrenAsTriggers="True">
+    <asp:UpdatePanel runat="server" ID="UpdatePanel1" ChildrenAsTriggers="True">
         <ContentTemplate>
             <div class="title-sitemap grid-12">
                 <h1 class="grid-6">
@@ -29,9 +29,9 @@
                 <div class="widget">
                     <header class="widget-header">
                         <div class="widget-header-icon">
-                            </div>
-                        <h3 id="Header3" runat="server" class="widget-header-title">
-                            System Vendor List</h3>
+                            
+                        </div>
+                        <h3 id="Header3" runat="server" class="widget-header-title">System Vendor List</h3>
                     </header>
                     <div class="widget-body no-padding">
                         <div class="grid-12">
@@ -46,15 +46,14 @@
                                     <Columns>
                                         <asp:BoundField DataField="VendorId" HeaderText="Vendor ID" />
                                         <asp:BoundField DataField="VendorName" HeaderText="Vendor Name" />
-                                          <asp:BoundField DataField="Phone" HeaderText="Phone" />
-                                        <asp:BoundField DataField="SalesCenterName" HeaderText="Sales Center"  Visible="False"/>
-                                       
-                                        <asp:BoundField DataField="IsActive" HeaderText="Active" />
+                                        <asp:BoundField DataField="Phone" HeaderText="Phone" />
+                                        <asp:BoundField DataField="SalesCenterName" HeaderText="Sales Center" Visible="False" />
                                         <asp:BoundField DataField="Address" HeaderText="Address" />
                                         <asp:BoundField DataField="ContactPerson" HeaderText="Contact Person" />
+                                        <asp:BoundField DataField="IsActive" HeaderText="Active" />
                                         <asp:TemplateField HeaderText="">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="editLinkButton" runat="server" 
+                                                <asp:LinkButton ID="editLinkButton" runat="server"
                                                     OnClick="editLinkButton_Click"><span class="icon icon-2x icon-edit-sign ui-button-text-icon-primary"></span></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -85,7 +84,7 @@
             </div>
         </ContentTemplate>
         <Triggers>
-          <%--  <asp:AsyncPostBackTrigger ControlID="vendorListGridView" EventName="RowDataBound" />--%>
+            <%--  <asp:AsyncPostBackTrigger ControlID="vendorListGridView" EventName="RowDataBound" />--%>
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
@@ -97,7 +96,7 @@
                 "bStateSave": true,
                 "sPaginationType": "full_numbers",
                 "aLengthMenu": [[10, 15, 20, 25, 50, 100, -1], [10, 15, 20, 25, 50, 100, "All"]],
-                "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [4, 5, 6, 7]}]
+                "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [4, 5, 6, 7] }]
             });
         }
     </script>
@@ -113,7 +112,7 @@
                     var col = $(this).parent().children().parent().index();
                     var row = $(this).parent().parent().index();
                     salesCenterId = $("#vendorListGridView").find("tr td:nth-child(1)").eq(row).text();
-                    isActive = $("#vendorListGridView").find("tr td:nth-child(5)").eq(row).text();
+                    isActive = $("#vendorListGridView").find("tr td:nth-child(6)").eq(row).text();
 
                     var id = $(this).attr("id");
                     var str = $(this).attr("href");

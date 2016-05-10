@@ -1,0 +1,556 @@
+﻿using System;
+using System.Data;
+using System.IO;
+using System.Web;
+using System.Web.UI.WebControls;
+using CrystalDecisions.CrystalReports.Engine;
+using Lumex.Tech;
+
+namespace Lumex.Report.DAL
+{
+    public class IPOSReportDAL
+    {
+        string reportPath = HttpContext.Current.Server.MapPath("/RptFiles/");
+
+        public ReportDocument GetCustomerReceivableListById(string customerId, string SalesCenterId, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+
+                db.AddParameters("@CustomerId", customerId.Trim());
+                db.AddParameters("@SalesCenterId", SalesCenterId);
+
+                reportDocument.Load(reportPath + "REPORT_GET_CUSTOMER_RECEIVABLE_LIST_BY_ID.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_CUSTOMER_RECEIVABLE_LIST_BY_ID", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object GetAvailableProductBySaclesCenterId(string SalesCenterId, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+
+                db.AddParameters("@SalesCenterId", SalesCenterId.Trim());
+                db.AddParameters("@Rtype", "S");
+
+                reportDocument.Load(reportPath + "REPORT_GET_AVAILABLE_PRODUCT_LIST_BY_SALES_CENTER.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_AVAILABLE_PRODUCT_LIST_BY_SALES_CENTER", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object GetAvailableProductBySaclesCenterIdPRWise(string SalesCenterId, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+
+                db.AddParameters("@SalesCenterId", SalesCenterId.Trim());
+                db.AddParameters("@Rtype", "S");
+
+                reportDocument.Load(reportPath + "REPORT_GET_AVAILABLE_PRODUCT_LIST_PR_WISE_BY_SALES_CENTER.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_AVAILABLE_PRODUCT_LIST_PR_WISE_BY_SALES_CENTER", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object GetPurchaseRecordbySC_Date_RANGE_STATUS(string SalesCenterId, string ToDate, string FromDate, string PrStatus, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+
+                db.AddParameters("@SalesCenterId", SalesCenterId.Trim());
+                db.AddParameters("@FromDate", LumexLibraryManager.ParseAppDate(FromDate.Trim()));
+                db.AddParameters("@ToDate", LumexLibraryManager.ParseAppDate(ToDate.Trim()));
+                db.AddParameters("@Status", PrStatus.Trim());
+                if (SalesCenterId.Substring(0, 1) == "S")
+                {
+                    db.AddParameters("Type", "S");
+                }
+                else
+                {
+                    db.AddParameters("Type", "W");
+                }
+
+                reportDocument.Load(reportPath + "REPORT_GET_PURCHASE_RECORDS_BY_SALES_CENTER_DATE_RANGE_AND_STATUS.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_PURCHASE_RECORDS_BY_SALES_CENTER_DATE_RANGE_AND_STATUS", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object GetSalesRecordbySC_Date_RANGE_STATUS(string SalesCenterId, string ToDate, string FromDate, string SRStatus, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+
+                db.AddParameters("@SalesCenterId", SalesCenterId.Trim());
+                db.AddParameters("@FromDate", LumexLibraryManager.ParseAppDate(FromDate.Trim()));
+                db.AddParameters("@ToDate", LumexLibraryManager.ParseAppDate(ToDate.Trim()));
+                db.AddParameters("@Status", SRStatus.Trim());
+
+                reportDocument.Load(reportPath + "REPORT_GET_SALES_RECORDS_BY_SALES_CENTER_DATE_RANGE_AND_STATUS.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_SALES_RECORDS_BY_SALES_CENTER_DATE_RANGE_AND_STATUS", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object GetBalance_Sheet_Report_by_Date(string ReportType, string SCWHId, string Date, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+                db.AddParameters("@ReportType", ReportType);
+                db.AddParameters("@OfficeBranchId", SCWHId);
+                db.AddParameters("@TransactionDate", LumexLibraryManager.ParseAppDate(Date.Trim()));
+
+                reportDocument.Load(reportPath + "REPORT_GET_BALANCE_SHEET_BY_DATE.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_BALANCE_SHEET_BY_DATE", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object GetFinancial_Ladger_Report_by_Date_and_AccountId(string ReportType, string SCWHId, string accountId, string toDate, string FromDate, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+                db.AddParameters("@ReportType", ReportType);
+                db.AddParameters("@OfficeBranchId", SCWHId);
+                db.AddParameters("@AccountId", accountId.Trim());
+                db.AddParameters("@FromDate", LumexLibraryManager.ParseAppDate(FromDate.Trim()));
+                db.AddParameters("@ToDate", LumexLibraryManager.ParseAppDate(toDate.Trim()));
+
+                reportDocument.Load(reportPath + "REPORT_GET_FINANCIAL_LEDGER_BY_DATE_RANGE_AND_ACCOUNT.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_FINANCIAL_LEDGER_BY_DATE_RANGE_AND_ACCOUNT", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object GetGeneral_ledger_Sheet_Report_by_Date(string ReportType, string SCWHId, string toDate, string FromDate, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+                db.AddParameters("@ReportType", ReportType);
+                db.AddParameters("@OfficeBranchId", SCWHId.Trim());
+                db.AddParameters("@FromDate", LumexLibraryManager.ParseAppDate(FromDate.Trim()));
+                db.AddParameters("@ToDate", LumexLibraryManager.ParseAppDate(toDate.Trim()));
+
+                reportDocument.Load(reportPath + "REPORT_GET_GENERAL_LEDGER_BY_DATE_RANGE.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_GENERAL_LEDGER_BY_DATE_RANGE", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object Get_Income_Statement_by_Date(string ReportType, string SCWHId, string toDate, string fromDate, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+                db.AddParameters("@ReportType", ReportType);
+                db.AddParameters("@OfficeBranchId", SCWHId);
+                db.AddParameters("@FromDate", LumexLibraryManager.ParseAppDate(fromDate.Trim()));
+                db.AddParameters("@ToDate", LumexLibraryManager.ParseAppDate(toDate.Trim()));
+
+                reportDocument.Load(reportPath + "REPORT_GET_INCOME_STATEMENT_BY_DATE_RANGE.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_INCOME_STATEMENT_BY_DATE_RANGE", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object Get_Trial_Balance_by_Date(string ReportType, string SCWHId, string Date, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+                db.AddParameters("@ReportType", ReportType);
+                db.AddParameters("@OfficeBranchId", SCWHId);
+                db.AddParameters("@TransactionDate", LumexLibraryManager.ParseAppDate(Date.Trim()));
+
+                reportDocument.Load(reportPath + "REPORT_GET_TRIAL_BALANCE_BY_DATE.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_TRIAL_BALANCE_BY_DATE", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object GetCustomerReceivePaymentList(string SalesCenter, string CustomerId, string FromDate, string ToDate, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+                db.AddParameters("@SalesCenterId", SalesCenter);
+                db.AddParameters("@CustomerId", CustomerId);
+                db.AddParameters("@FromDate", LumexLibraryManager.ParseAppDate(FromDate.Trim()));
+                db.AddParameters("@ToDate", LumexLibraryManager.ParseAppDate(ToDate.Trim()));
+
+                reportDocument.Load(reportPath + "REPORT_GET_CUSTOMER_WISE_RECEIVE_PAYMENT_LIST.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_CUSTOMER_WISE_RECEIVE_PAYMENT_LIST", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        internal object GetAvailableProductByWarehouseId(string WarehouseId, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+
+                db.AddParameters("@SalesCenterId", WarehouseId.Trim());
+                db.AddParameters("@Rtype", "W");
+                reportDocument.Load(reportPath + "REPORT_GET_AVAILABLE_PRODUCT_LIST_BY_SALES_CENTER.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_AVAILABLE_PRODUCT_LIST_BY_SALES_CENTER", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object GetAvailableProductByWarehouseIdPRWise(string WarehouseId, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+
+                db.AddParameters("@SalesCenterId", WarehouseId.Trim());
+                db.AddParameters("@Rtype", "W");
+
+                reportDocument.Load(reportPath + "REPORT_GET_AVAILABLE_PRODUCT_LIST_PR_WISE_BY_SALES_CENTER.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_AVAILABLE_PRODUCT_LIST_PR_WISE_BY_SALES_CENTER", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object GetSalesCenterVendorReceivePaymentList(string SalesCenterId, string VendorId, string FromDate, string ToDate, string status, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+
+                db.AddParameters("@VendorId", VendorId.Trim());
+                db.AddParameters("@FromDate", LumexLibraryManager.ParseAppDate(FromDate.Trim()));
+                db.AddParameters("@ToDate", LumexLibraryManager.ParseAppDate(ToDate.Trim()));
+                db.AddParameters("@Status", status);
+                db.AddParameters("@SalesCenterId", SalesCenterId.Trim());
+                db.AddParameters("@Rtype", "S");
+
+                reportDocument.Load(reportPath + "REPORT_GET_VENDOR_WISE_RECEIVE_PAYMENT_LIST.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_VENDOR_WISE_RECEIVE_PAYMENT_LIST", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        internal object GetWarehouseVendorReceivePaymentList(string SalesCenterId, string VendorId, string FromDate, string ToDate, string status, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+
+                db.AddParameters("@VendorId", VendorId.Trim());
+                db.AddParameters("@FromDate", LumexLibraryManager.ParseAppDate(FromDate.Trim()));
+                db.AddParameters("@ToDate", LumexLibraryManager.ParseAppDate(ToDate.Trim()));
+                db.AddParameters("@Status", status);
+                db.AddParameters("@SalesCenterId", SalesCenterId.Trim());
+                db.AddParameters("@Rtype", "W");
+
+                reportDocument.Load(reportPath + "REPORT_GET_VENDOR_WISE_RECEIVE_PAYMENT_LIST.rpt");
+                DataTable dt = db.ExecuteDataTable("REPORT_GET_VENDOR_WISE_RECEIVE_PAYMENT_LIST", true);
+                reportDocument.SetDataSource(dt);
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        internal object GetSalesInvoiceBySalesRecord(string salesRecordId, string salesCenterId, LumexDBPlayer db)
+        {
+            try
+            {
+                ReportDocument reportDocument = new ReportDocument();
+                DataTable dt=new DataTable();
+                db.AddParameters("@SalesRecordId ", salesRecordId);
+                db.AddParameters("@WHID", salesCenterId);
+                //db.AddParameters("@TransactionDate", LumexLibraryManager.ParseAppDate(Date.Trim()));
+                if (salesCenterId == "WH-003")
+                {
+                    reportDocument.Load(reportPath + "Report_Sales_Invoice-SignCorp.rpt");
+                    dt = db.ExecuteDataTable("REPORT_GET_SALES_INVOICE_BY_ID", true);
+                    reportDocument.SetDataSource(dt);
+                }
+                else if (salesCenterId == "WH-001")
+                {
+                    reportDocument.Load(reportPath + "Report_Sales_Invoice.rpt");
+                    dt = db.ExecuteDataTable("REPORT_GET_SALES_INVOICE_BY_ID", true);
+                    reportDocument.SetDataSource(dt);
+                }
+                else
+                {
+                    reportDocument.Load(reportPath + "Report_Sales_Invoice-SignTrade.rpt");
+                    dt = db.ExecuteDataTable("REPORT_GET_SALES_INVOICE_BY_ID", true);
+                    reportDocument.SetDataSource(dt);
+                }
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        internal object GetReceivePaymentVaucharbyVendororCustomer(string JournalNo, string vendorId, string WHSCId, LumexDBPlayer db)
+        {
+            try
+            {
+                DataRow dr = null;
+                DataTable dataTable = new DataTable();
+                ReportDocument reportDocument = new ReportDocument();
+
+                db.AddParameters("@VendorId", vendorId);
+                db.AddParameters("@JounalNo ", JournalNo);
+                db.AddParameters("@SalesCenterId", WHSCId);
+                //db.AddParameters("@TransactionDate", LumexLibraryManager.ParseAppDate(Date.Trim()));
+
+                if (WHSCId == "WH-001")
+                {
+                    reportDocument.Load(reportPath + "Report_Vendor_Wise_Payment.rpt");
+                }
+                else if (WHSCId == "WH-002")
+                {
+                    reportDocument.Load(reportPath + "Report_Vendor_Wise_Payment-SignTrade.rpt");
+                }
+                else
+                {
+                    reportDocument.Load(reportPath + "Report_Vendor_Wise_Payment-SignCorp.rpt");
+                }
+                
+                DataTable dt = db.ExecuteDataTable("[REPORT_GETRECEIVE_PAYMENT_VAUCHAR_BY_JOURNAL]", true);
+                reportDocument.SetDataSource(dt);
+                //dataTable.Columns.Add(new DataColumn("JournalNumber"));
+                //dataTable.Columns.Add(new DataColumn("ReceivePaymentDate"));
+                //dataTable.Columns.Add(new DataColumn("RecordId"));
+                //dataTable.Columns.Add(new DataColumn("AutoVoucherNumber"));
+                //dataTable.Columns.Add(new DataColumn("Amount"));
+                //dataTable.Columns.Add(new DataColumn("DueAmount"));
+                //dataTable.Columns.Add(new DataColumn("logopath"));
+                //dataTable.Columns.Add(new DataColumn("VendorId"));
+                //dataTable.Columns.Add(new DataColumn("VendorName"));
+                //dataTable.Columns.Add(new DataColumn("Narration"));
+                //dataTable.Columns.Add(new DataColumn("Description"));
+                //dataTable.Columns.Add(new DataColumn("Serial"));
+                ////dataTable.Columns.Add(new DataColumn("ImageStream"));
+
+                //for (int i = 0; i < dt.Rows.Count; i++)
+                //{
+                //    dr = dataTable.NewRow();
+
+                //    dr["JournalNumber"] = dt.Rows[0]["JournalNumber"].ToString();
+                //    dr["ReceivePaymentDate"] = dt.Rows[0]["ReceivePaymentDate"].ToString();
+                //    dr["RecordId"] = dt.Rows[0]["RecordId"].ToString();
+                //    dr["AutoVoucherNumber"] = dt.Rows[0]["AutoVoucherNumber"].ToString();
+                //    dr["Amount"] = dt.Rows[0]["Amount"].ToString();
+                //    dr["DueAmount"] = dt.Rows[0]["DueAmount"].ToString();
+                //    dr["logopath"] = dt.Rows[0]["logopath"].ToString();
+                //    dr["VendorId"] = dt.Rows[0]["VendorId"].ToString();
+                //    dr["VendorName"] = dt.Rows[0]["VendorName"].ToString();
+                //    dr["Narration"] = dt.Rows[0]["Narration"].ToString();
+                //    dr["Description"] = dt.Rows[0]["Description"].ToString();
+                //    dr["Serial"] = dt.Rows[0]["Serial"].ToString();
+                   
+
+
+                //    dataTable.Rows.Add(dr);
+                //}
+
+                //for (int rowNumber = 0; rowNumber < dataTable.Rows.Count; rowNumber++)
+                //{
+
+                //    string imgName = HttpContext.Current.Server.MapPath(dataTable.Rows[rowNumber]["logopath"].ToString());
+
+                //    DisplayImages(dataTable.Rows[rowNumber], "logopath", imgName);
+
+                //}
+                
+                //for (int index = 0; index < dataTable.Rows.Count; index++)
+                //{
+                //    if (dataTable.Rows[index]["logopath"].ToString() != "")
+                //    {
+                //        if (File.Exists(HttpContext.Current.Server.MapPath(dataTable.Rows[index]["logopath"].ToString())))
+                //        {
+                //            DisplayImages(dataTable.Rows[index], "logopath", dataTable.Rows[index]["logopath"].ToString());
+                //        }
+                //        else
+                //        {
+                //            DisplayImages(dataTable.Rows[index], "logopath", "/content/images/noimage.png");
+                //        }
+                //    }
+                //    else
+                //    {
+                //        DisplayImages(dataTable.Rows[index], "logopath", "/content/images/noimage.png");
+                //    }
+                //}
+                //for (int index = 0; index < dataTable.Rows.Count; index++)
+                //{
+                //    if (dataTable.Rows[index]["logopath"].ToString() != "")
+                //    {
+                //        string s = HttpContext.Current.Server.MapPath(dataTable.Rows[index]["logopath"].ToString());
+
+                //        if (File.Exists(s))
+                //        {
+                //            LoadImage(dataTable.Rows[index], "ImageStream", s);
+                //        }
+                       
+                //    }
+                    
+                //}
+                
+
+                return reportDocument;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        //private void LoadImage(DataRow objDataRow, string strImageField, string FilePath)
+        //{
+        //    //try
+        //    //{
+        //    //    FileStream fs = new FileStream(FilePath,System.IO.FileMode.Open, System.IO.FileAccess.Read);
+        //    //    byte[] Image = new byte[fs.Length];
+        //    //    fs.Read(Image, 0, Convert.ToInt32(fs.Length));
+        //    //    fs.Close();
+        //    //    objDataRow[strImageField] = Image;
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    //Response.Write("<font color=red>" + ex.Message + "</font>");
+        //    //}
+        
+        //    BinaryReader br;
+          
+        //    if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + objDataRow["logopath"]))
+        //    {
+        //        FileStream fs;
+        //        fs = new FileStream(AppDomain.CurrentDomain.BaseDirectory + objDataRow["logopath"], FileMode.Open);
+        //        br = new BinaryReader(fs);
+              
+        //        byte[] imgbyte = new byte[fs.Length + 1];
+        //        imgbyte = br.ReadBytes(Convert.ToInt32((fs.Length)));
+        //        objDataRow[strImageField] = imgbyte;
+        //        br.Close();
+        //        fs.Close(); 
+        //    }
+        
+          
+        //}
+        private void DisplayImages(DataRow row, string img, string ImagePath)
+        {
+
+
+            FileStream stream = new FileStream(ImagePath, FileMode.Open, FileAccess.Read);
+
+            byte[] ImgData = new byte[stream.Length];
+
+            stream.Read(ImgData, 0, Convert.ToInt32(stream.Length));
+
+            stream.Close();
+
+            row[img] = ImgData;
+
+        }
+       
+    }
+}

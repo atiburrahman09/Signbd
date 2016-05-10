@@ -1,6 +1,5 @@
 E:\Atib\Projects\signbd\SignBd\Lumex.Report\obj\Release\Lumex.Report.csprojResolveAssemblyReference.cache
 E:\Atib\Projects\signbd\SignBd\Lumex.Report\bin\Release\Lumex.Report.dll
 E:\Atib\Projects\signbd\SignBd\Lumex.Report\bin\Release\Lumex.Report.pdb
-E:\Atib\Projects\signbd\SignBd\Lumex.Report\bin\Release\Lumex.Tech.dll
 E:\Atib\Projects\signbd\SignBd\Lumex.Report\obj\Release\Lumex.Report.dll
 E:\Atib\Projects\signbd\SignBd\Lumex.Report\obj\Release\Lumex.Report.pdb

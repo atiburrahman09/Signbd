@@ -139,11 +139,16 @@
                 </div>
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="accountTypeDropDownList" EventName="SelectedIndexChanged"/>
+            <asp:AsyncPostBackTrigger ControlID="totallingAccountListGridView" EventName="RowDataBound" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
 <asp:Content ID="scriptContent" ContentPlaceHolderID="scriptContentPlaceHolder" runat="server">
     <script type="text/javascript">
-        $(function () {
+        function pageLoad(sender, args) {
+          
             $("#totallingAccountNumberTextBox").attr("ReadOnly", true);
 
             $("#totallingAccountListGridView").dataTable({
@@ -192,10 +197,7 @@
                     MyOverlayStart();
                 }
             });
-        });
-    </script>
-    <script type="text/javascript">
-        function pageLoad(sender, args) {
+
             $("#saveButton").click(function (e) {
                 $("#accountNameTextBox").rules("add", {
                     required: true
@@ -209,6 +211,7 @@
                     MyOverlayStart();
                 }
             });
-        }
+        };
     </script>
+  
 </asp:Content>

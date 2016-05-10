@@ -1,0 +1,3 @@
+Purchase Order -> CreatePurchase.aspx -> GET_PENDING_PURCHASE_ORDER_BY_ID_AND_WAREHOUSE -> Giving No Data
+Sales -> ApproveRetailSales.aspx -> Product Stock is not deducting proparly. If i give quantity in total 2, it 
+deducts 1.

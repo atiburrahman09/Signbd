@@ -4,7 +4,7 @@
 <asp:Content ID="headContent" ContentPlaceHolderID="headContentPlaceHolder" runat="server">
 </asp:Content>
 <asp:Content ID="bodyContent" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
-    <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="false">
+    <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="true">
         <ContentTemplate>
             <div class="title-sitemap grid-12">
                 <h1 class="grid-6">
@@ -53,7 +53,7 @@
                                     </h5>
                                 </div>
                                 <div class="grid-11">
-                                    <asp:DropDownList ID="drpdwnSalesCenterOrWarehouse" runat="server">
+                                    <asp:DropDownList ID="drpdwnSalesCenterOrWarehouse" runat="server" AutoPostBack="true" OnSelectedIndexChanged="drpdwnSalesCenterOrWarehouse_OnSelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                             <div class="widget-separator no-border grid-3">
                                 <h5 class="typo">Payment Mode
                                 </h5>
-                                <asp:DropDownList ID="paymentModeDropDownList" runat="server" OnSelectedIndexChanged="paymentModeDropDownList_SelectedIndexChanged" AutoPostBack="True" CssClass="form form-full">
+                                <asp:DropDownList ID="paymentModeDropDownList" runat="server" required="required" OnSelectedIndexChanged="paymentModeDropDownList_SelectedIndexChanged" AutoPostBack="True" CssClass="form form-full">
                                     <asp:ListItem></asp:ListItem>
                                     <asp:ListItem>Cash</asp:ListItem>
                                     <asp:ListItem>Cheque</asp:ListItem>
@@ -106,7 +106,7 @@
                             <div class="widget-separator no-border grid-3">
                                 <h5 class="typo">Account Head
                                 </h5>
-                                <asp:DropDownList ID="accountHeadDropDownList" runat="server" CssClass="form form-full">
+                                <asp:DropDownList ID="accountHeadDropDownList" runat="server" required="required" CssClass="form form-full">
                                 </asp:DropDownList>
                             </div>
 
@@ -115,7 +115,7 @@
                             <div class="widget-separator no-border grid-3">
                                 <h5 class="typo">Cheque Number
                                 </h5>
-                                <asp:TextBox ID="chequeNumberTextBox" runat="server" CssClass="cash-cheque form form-full"
+                                <asp:TextBox ID="chequeNumberTextBox" runat="server" required="required" CssClass="cash-cheque form form-full"
                                     placeholder="Cheque Number"></asp:TextBox>
                             </div>
                             <div class="widget-separator no-border grid-3">
@@ -127,7 +127,7 @@
                                     </div>
                                     <div class="grid-11">
                                         <asp:TextBox ID="chequeDateTextBox" CssClass="date-textbox cash-cheque form form-full"
-                                            runat="server"></asp:TextBox>
+                                            runat="server" required="required"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -164,6 +164,14 @@
                                         <asp:BoundField DataField="TotalPayable" HeaderText="Total Payable" />
                                         <asp:BoundField DataField="PaidAmount" HeaderText="Paid Amount" />
                                         <asp:BoundField DataField="Due" HeaderText="Due Amount" />
+                                          <asp:TemplateField>
+                                                <HeaderTemplate>
+                                                    <asp:CheckBox ID="allCheckBox" runat="server" />
+                                                </HeaderTemplate>
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="selectCheckBox" runat="server" CssClass="clickCheckBox" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                             </div>

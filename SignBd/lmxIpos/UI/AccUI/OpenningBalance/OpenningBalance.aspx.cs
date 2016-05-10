@@ -1,0 +1,256 @@
+﻿using System;
+using System.Activities.Expressions;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Lumex.Project.BLL;
+using Lumex.Tech;
+
+namespace lmxIpos.UI.AccUI.OpenningBalance
+{
+    public partial class OpenningBalance : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                LoadWarehouses();
+                // LoadChartOfAccountsHeadList();
+            }
+        }
+        protected void LoadWarehouses()
+        {
+            WarehouseBLL warehouse = new WarehouseBLL();
+
+            try
+            {
+                DataTable dt = warehouse.GetActiveWarehouseListByUser();
+
+                warehouseDropDownList.DataSource = dt;
+                warehouseDropDownList.DataValueField = "WarehouseId";
+                warehouseDropDownList.DataTextField = "WarehouseName";
+                warehouseDropDownList.DataBind();
+                warehouseDropDownList.Items.Insert(0, "");
+                //warehouseDropDownList.SelectedIndex = 0;
+                //warehouseDropDownList.Items[0].Value = "A";
+                warehouseDropDownList.SelectedValue = LumexSessionManager.Get("UserWareHouseId").ToString();
+
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                if (ex.InnerException != null) { message += " --> " + ex.InnerException.Message; }
+                MyAlertBox("ErrorAlert(\"" + ex.GetType() + "\", \"" + message + "\", \"\");");
+            }
+            finally
+            {
+                warehouse = null;
+            }
+        }
+        protected void LoadChartOfAccountsHeadList()
+        {
+            ChartOfAccountBLL chartOfAccount = new ChartOfAccountBLL();
+
+            try
+            {
+                DataTable dt = chartOfAccount.GetActiveAndPostedChartOfAccountsHeadList();
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    ListItem item1 = new ListItem(dt.Rows[i]["AccountHead"].ToString(), dt.Rows[i]["AccountId"].ToString());
+
+                    if (dt.Rows[i]["AccountId"].ToString().Contains("A"))
+                    {
+                        item1.Attributes["OptionGroup"] = "Asset";
+                    }
+                    else if (dt.Rows[i]["AccountId"].ToString().Contains("E"))
+                    {
+                        item1.Attributes["OptionGroup"] = "Expense";
+                    }
+                    else if (dt.Rows[i]["AccountId"].ToString().Contains("I"))
+                    {
+                        item1.Attributes["OptionGroup"] = "Income";
+                    }
+                    else if (dt.Rows[i]["AccountId"].ToString().Contains("L"))
+                    {
+                        item1.Attributes["OptionGroup"] = "Liability";
+                    }
+
+                    //  accountHeadDropDownList.Items.Add(item1);
+
+                }
+
+                //accountHeadDropDownList.DataSource = dt;
+                //accountHeadDropDownList.DataValueField = "AccountId";
+                //accountHeadDropDownList.DataTextField = "AccountHead";
+                //accountHeadDropDownList.DataBind();
+                // accountHeadDropDownList.Items.Insert(0, "");
+                //accountHeadDropDownList.SelectedIndex = 0;
+
+                if (dt.Rows.Count < 1)
+                {
+                    msgbox.Visible = true; msgTitleLabel.Text = "Account Head Data Not Found!!!"; msgDetailLabel.Text = "";
+                    msgbox.Attributes.Add("class", "alert alert-warning");
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                if (ex.InnerException != null) { message += " --> " + ex.InnerException.Message; }
+                MyAlertBox("ErrorAlert(\"" + ex.GetType() + "\", \"" + message + "\", \"\");");
+            }
+            finally
+            {
+                chartOfAccount = null;
+            }
+        }
+        protected void payToFromTypeDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadPayToFromCompanyList();
+        }
+        protected void LoadPayToFromCompanyList()
+        {
+            PayToFromCompanyBLL payToFromCompany = new PayToFromCompanyBLL();
+
+            try
+            {
+                payToFromCompanyDropDownList.Items.Clear();
+                DataTable dt = new DataTable();
+                if (payToFromTypeDropDownList.SelectedValue == "com")
+                {
+                    dt = payToFromCompany.GetActivePayToFromCompanyList();
+                    payToFromCompanyDropDownList.DataSource = dt;
+                    payToFromCompanyDropDownList.DataValueField = "CompanyId";
+                    payToFromCompanyDropDownList.DataTextField = "CompanyName";
+                    payToFromCompanyDropDownList.DataBind();
+                    lblPaytoFromType.Text = "Company";
+                }
+                else if (payToFromTypeDropDownList.SelectedValue == "ven")
+                {
+                    VendorBLL vendor = new VendorBLL();
+                    dt = vendor.GetActiveVendors();
+                    payToFromCompanyDropDownList.DataSource = dt;
+                    payToFromCompanyDropDownList.DataValueField = "VendorId";
+                    payToFromCompanyDropDownList.DataTextField = "VendorName";
+                    payToFromCompanyDropDownList.DataBind();
+                    lblPaytoFromType.Text = "Vendor";
+                }
+                else if (payToFromTypeDropDownList.SelectedValue == "cus")
+                {
+                    CustomerBLL customer = new CustomerBLL();
+                    dt = customer.GetActiveCustomerList();
+                    payToFromCompanyDropDownList.DataSource = dt;
+                    payToFromCompanyDropDownList.DataValueField = "CustomerId";
+                    payToFromCompanyDropDownList.DataTextField = "CustomerIdName";
+                    payToFromCompanyDropDownList.DataBind();
+                    lblPaytoFromType.Text = "Customer";
+
+                }
+
+                payToFromCompanyDropDownList.Items.Insert(0, "");
+                payToFromCompanyDropDownList.Items.Insert(1, "N/A");
+                payToFromCompanyDropDownList.SelectedIndex = 0;
+
+                if (dt.Rows.Count < 1)
+                {
+                    msgbox.Visible = true; msgTitleLabel.Text = "Pay To/From Company Data Not Found!!!"; msgDetailLabel.Text = "";
+                    msgbox.Attributes.Add("class", "alert alert-warning");
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                if (ex.InnerException != null) { message += " --> " + ex.InnerException.Message; }
+                MyAlertBox("ErrorAlert(\"" + ex.GetType() + "\", \"" + message + "\", \"\");");
+            }
+            finally
+            {
+                payToFromCompany = null;
+            }
+        }
+        protected void MyAlertBox(string alertScript)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ServerControlScript", alertScript, true);
+        }
+
+        protected void saveButton_OnClick(object sender, EventArgs e)
+        {
+            OpenningBalanceBLL openningBalanceBll = new OpenningBalanceBLL();
+            DataTable dt = new DataTable();
+            try
+            {
+
+                if (txtbxAmount.Text == "")
+                {
+                    msgbox.Visible = true; msgTitleLabel.Text = "Validation!!!"; msgDetailLabel.Text = "Amount field is required.";
+                }
+                else if (txtbxNaration.Text == "")
+                {
+                    msgbox.Visible = true; msgTitleLabel.Text = "Validation!!!"; msgDetailLabel.Text = "Naretion field is required.";
+                }
+
+                else if (ddlType.SelectedValue == "")
+                {
+                    msgbox.Visible = true; msgTitleLabel.Text = "Validation!!!"; msgDetailLabel.Text = "Select Any Type.";
+                }
+
+                else if (payToFromCompanyDropDownList.SelectedValue == "")
+                {
+                    msgbox.Visible = true; msgTitleLabel.Text = "Validation!!!"; msgDetailLabel.Text = "Pay To From field is required.";
+                }
+                //else if (debitCreditDropDownList.SelectedValue == "")
+                //{
+                //    msgbox.Visible = true; msgTitleLabel.Text = "Validation!!!"; msgDetailLabel.Text = "Debit Or Credit field is required.";
+                //}
+                else if (toDateTextBox.Text == "")
+                {
+                    msgbox.Visible = true;
+                    msgTitleLabel.Text = "Validation!!!";
+                    msgDetailLabel.Text = "Transection Field is required.";
+                }
+                else
+                {
+
+                    // openningBalanceBll.AccountId = accountHeadDropDownList.SelectedValue;
+                    openningBalanceBll.Amount = decimal.Parse(txtbxAmount.Text);
+                    openningBalanceBll.Naretion = txtbxNaration.Text.Trim();
+                    openningBalanceBll.PayToFromType = payToFromTypeDropDownList.SelectedValue;
+                    openningBalanceBll.PayToFromCompany = payToFromCompanyDropDownList.SelectedValue;
+                    openningBalanceBll.PayToFromCompanyName = payToFromCompanyDropDownList.SelectedItem.Text;
+                    
+                    // openningBalanceBll.DebitOrCredit = debitCreditDropDownList.SelectedValue;
+                    openningBalanceBll.Type = ddlType.SelectedValue;
+                    openningBalanceBll.OfficeBranchId = warehouseDropDownList.SelectedValue;
+                    openningBalanceBll.TransectionDate = LumexLibraryManager.ParseAppDate(toDateTextBox.Text);
+                    dt = openningBalanceBll.SaveOpenningBalance();
+                    if (dt.Rows.Count > 0)
+                    {
+                        string message =
+                            "Openning Balance <span class='actionTopic'>Created</span> Successfully with Openning Balance  <span class='actionTopic'></span>.";
+                        MyAlertBox(
+                            "var callbackOk = function () { MyOverlayStart(); window.location = \"/UI/AccUI/OpenningBalance/OpenningBalance.aspx\"; }; SuccessAlert(\"" +
+                            "Process Succeed" + "\", \"" + message + "\", callbackOk);");
+                    }
+                    else
+                    {
+                        string message =
+                            "Opening Balance <span class='actionTopic'>Create</span> Failed.";
+                        MyAlertBox(
+                            "var callbackOk = function () { MyOverlayStart(); window.location = \"/UI/AccUI/OpenningBalance/OpenningBalance.aspx\"; }; SuccessAlert(\"" +
+                            "Process Succeed" + "\", \"" + message + "\", callbackOk);");
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                // throw;
+            }
+        }
+    }
+}

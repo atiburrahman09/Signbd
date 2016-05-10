@@ -134,7 +134,7 @@ namespace lmxIpos.UI.Product
                 ProductBLL product = new ProductBLL();
                 product.UpdateProductActivation(productListGridView.Rows[row.RowIndex].Cells[0].Text.ToString(), "True");
 
-                productListGridView.Rows[row.RowIndex].Cells[7].Text = "True";
+                productListGridView.Rows[row.RowIndex].Cells[5].Text = "True";
                 string message = "Product <span class='actionTopic'>Activated</span> Successfully.";
                 MyAlertBox("SuccessAlert(\"" + "Process Succeed" + "\", \"" + message + "\", \"\");");
             }
@@ -156,7 +156,7 @@ namespace lmxIpos.UI.Product
                 ProductBLL roduct = new ProductBLL();
                 roduct.UpdateProductActivation(productListGridView.Rows[row.RowIndex].Cells[0].Text.ToString(), "False");
 
-                productListGridView.Rows[row.RowIndex].Cells[8].Text = "False";
+                productListGridView.Rows[row.RowIndex].Cells[5].Text = "False";
                 string message = "Product <span class='actionTopic'>Deactivated</span> Successfully.";
                 MyAlertBox("SuccessAlert(\"" + "Process Succeed" + "\", \"" + message + "\", \"\");");
             }

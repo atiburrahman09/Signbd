@@ -2,9 +2,17 @@
     CodeBehind="DebitVoucherCashList.aspx.cs" Inherits="lmxIpos.UI.AccUI.DebitVoucher.DebitVoucherCashList" %>
 
 <asp:Content ID="headContent" ContentPlaceHolderID="headContentPlaceHolder" runat="server">
+    <script type="text/javascript">
+        function ExportReportForm() {
+            window.open("/ReportExport.aspx", "_blank");
+        }
+        function ViewReportForm() {
+            window.open("/ReportView.aspx", "_blank");
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="bodyContent" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
-    <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+    <asp:UpdatePanel runat="server" ID="UpdatePanel1" ChildrenAsTriggers="true">
         <ContentTemplate>
             <div class="title-sitemap grid-12">
                 <h1 class="grid-6">
@@ -34,7 +42,7 @@
                     </header>
                     <div class="widget-body no-padding">
                         <div class="widget-separator no-padding grid-12">
-                            <div class="widget-separator no-border grid-3">
+                            <div class="widget-separator no-border grid-3" runat="server" Visible="False">
                                 <div class="grid-12">
                                     <h5 class="typo">
                                         Account On</h5>
@@ -115,6 +123,12 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="editLinkButton" runat="server" CssClass="btn btn-mini btn-warning clickProcessing"
                                                     OnClick="editLinkButton_Click">Edit</asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="printInvoiceButton" runat="server" CssClass="btn btn-mini btn-success" Text="Print Voucher"
+                                                    OnClick="printInvoiceButton_OnClick"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

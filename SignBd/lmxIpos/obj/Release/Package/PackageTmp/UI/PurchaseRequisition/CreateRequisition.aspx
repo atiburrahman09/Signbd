@@ -198,9 +198,10 @@
                 $(this).parent().find(".date-textbox").focus();
             });
 
+           
             $.ajax({
                 type: "POST",
-                url: "/Services/ProductSearch.ashx?id=" + $('#warehouseDropdownlist').val(),
+                url: "/Services/ProductSearchByWH.ashx?id=" + $('#warehouseDropDownList').val(),
                 success: function (d) {
                     var array = [];
                     d.split(';').forEach(function (value) {

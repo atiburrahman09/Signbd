@@ -2,9 +2,17 @@
     CodeBehind="DebitVoucherChequeList.aspx.cs" Inherits="lmxIpos.UI.AccUI.DebitVoucher.DebitVoucherChequeList" %>
 
 <asp:Content ID="headContent" ContentPlaceHolderID="headContentPlaceHolder" runat="server">
+    <script type="text/javascript">
+        function ExportReportForm() {
+            window.open("/ReportExport.aspx", "_blank");
+        }
+        function ViewReportForm() {
+            window.open("/ReportView.aspx", "_blank");
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="bodyContent" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
-    <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+    <asp:UpdatePanel runat="server" ID="UpdatePanel1" ChildrenAsTriggers="true">
         <ContentTemplate>
             <div class="title-sitemap grid-12">
                 <h1 class="grid-6">
@@ -28,20 +36,18 @@
                 <div class="widget">
                     <header class="widget-header">
                         <div class="widget-header-icon">
-                            </div>
-                        <h3 id="Header3" runat="server" class="widget-header-title">
-                            System Debit Voucher Cheque List</h3>
+                            
+                        </div>
+                        <h3 id="Header3" runat="server" class="widget-header-title">System Debit Voucher Cheque List</h3>
                     </header>
                     <div class="widget-body no-padding">
                         <div class="widget-separator no-padding grid-12">
                             <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
-                                    <h5 class="typo">
-                                        Account On</h5>
+                                    <h5 class="typo">Account On</h5>
                                 </div>
                                 <div class="grid-11">
-                                    <asp:DropDownList ID="drpdwnAccountOn" runat="server" OnSelectedIndexChanged="drpdwnAccountOn_SelectedIndexChanged"
-                                        AutoPostBack="true">
+                                    <asp:DropDownList ID="drpdwnAccountOn" runat="server" AutoPostBack="true">
                                         <%--<asp:ListItem>Sales Center</asp:ListItem>--%>
                                         <asp:ListItem>Business</asp:ListItem>
                                     </asp:DropDownList>
@@ -60,8 +66,7 @@
                             </div>
                             <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
-                                    <h5 class="typo">
-                                        Date From</h5>
+                                    <h5 class="typo">Date From</h5>
                                 </div>
                                 <div class="grid-11">
                                     <div class="grid-1">
@@ -75,8 +80,7 @@
                             </div>
                             <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
-                                    <h5 class="typo">
-                                        Date To</h5>
+                                    <h5 class="typo">Date To</h5>
                                 </div>
                                 <div class="grid-11">
                                     <div class="grid-1">
@@ -117,17 +121,22 @@
                                                     OnClick="editLinkButton_Click">Edit</asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="printInvoiceButton" runat="server" CssClass="btn btn-mini btn-success" Text="Print Voucher"
+                                                    OnClick="printInvoiceButton_OnClick"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                             </div>
                         </div>
-                         <div id="viewDetailsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        <div id="viewDetailsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                             aria-hidden="true">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                     &times;</button>
-                                <h3>
-                                    Debit Voucher Cheque - Details
+                                <h3>Debit Voucher Cheque - Details
                                 </h3>
                             </div>
                             <div class="modal-body">
@@ -286,7 +295,7 @@
                 //"bDestroy": true,
                 "sPaginationType": "full_numbers",
                 "aLengthMenu": [[10, 15, 20, 25, 50, -1], [10, 15, 20, 25, 50, "All"]],
-                "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [5, 6]}]
+                "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [5, 6] }]
             });
 
             $("#allVoucherListButton").click(function () {

@@ -84,8 +84,8 @@
                                 </h5>
                                 <asp:DropDownList ID="paymentModeDropDownList" required="required" runat="server" OnSelectedIndexChanged="paymentModeDropDownList_SelectedIndexChanged" AutoPostBack="True" CssClass="form form-full">
                                     <asp:ListItem></asp:ListItem>
-                                    <asp:ListItem>Cash</asp:ListItem>
-                                    <asp:ListItem>Cheque</asp:ListItem>
+                                    <asp:ListItem Value="Cash">Cash</asp:ListItem>
+                                    <asp:ListItem Value="Cheque">Cheque</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div class="widget-separator no-border grid-3">
@@ -143,7 +143,8 @@
                                     CssClass="table table-hover gridView dataTable">
                                     <Columns>
                                         <asp:BoundField DataField="RecordDate" HeaderText="Record Date" />
-                                        <asp:BoundField DataField="SalesRecordId" HeaderText="Record ID" Visible="False" />
+                                        <%--<asp:BoundField DataField="RecordId" HeaderText="Record Id" />--%>
+                                        <asp:BoundField DataField="SalesRecordId" HeaderText="Record ID" />
                                         <asp:BoundField DataField="SalesCenterName" HeaderText="SC Name" Visible="False" />
                                         <asp:BoundField DataField="TotalAmount" HeaderText="Total Amount" />
                                         <asp:BoundField DataField="DiscountAmount" HeaderText="Discount" />
@@ -151,6 +152,14 @@
                                         <asp:BoundField DataField="TotalReceivable" HeaderText="Total Receivable" />
                                         <asp:BoundField DataField="ReceivedAmount" HeaderText="Received Amount" />
                                         <asp:BoundField DataField="Due" HeaderText="Due Amount" />
+                                         <asp:TemplateField>
+                                                <HeaderTemplate>
+                                                    <asp:CheckBox ID="allCheckBox" runat="server" />
+                                                </HeaderTemplate>
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="selectCheckBox" runat="server" CssClass="clickCheckBox" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -207,10 +216,36 @@
                 '.chosen-select-no-single': { disable_search_threshold: 20 },
                 '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
                 '.chosen-select-width': { width: "96%" }
-            }
+            };
             for (var selector in config) {
                 $(selector).chosen(config[selector]);
             }
+
+            $("#allCheckBox").click(function () {
+                if ($(this).is(":checked")) {
+                    $(".clickCheckBox>#selectCheckBox").prop('checked', true);
+                    checkedRowCount = $(".clickCheckBox").length;
+                } else {
+                    $(".clickCheckBox>#selectCheckBox").prop('checked', false);
+                    checkedRowCount = 0;
+                }
+            });
+
+            $(".clickCheckBox").click(function () {
+                if ($(this).find("#selectCheckBox").is(":checked")) {
+                    checkedRowCount++;
+                    if (checkedRowCount == $(".clickCheckBox").length) {
+                        $("#allCheckBox").prop('checked', true);
+                    }
+                } else {
+                    checkedRowCount--;
+                    $("#allCheckBox").prop('checked', false);
+
+                    if (checkedRowCount < 1) {
+                        checkedRowCount = 0;
+                    }
+                }
+            });
         }
     </script>
     <script type="text/javascript">

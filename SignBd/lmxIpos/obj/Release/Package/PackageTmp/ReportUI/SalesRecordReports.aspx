@@ -35,23 +35,21 @@
                 </div>
                 <div class="widget">
                     <header class="widget-header">
-                <div class="widget-header-icon">
-                    </div>
-                <h3 id="Header3" runat="server" class="widget-header-title">
-                    System Sales Record Report</h3>
-            </header>
+                        <div class="widget-header-icon">
+                            
+                        </div>
+                        <h3 id="Header3" runat="server" class="widget-header-title">System Sales Record Report</h3>
+                    </header>
                     <div class="widget-body no-padding">
                         <div class="widget-separator no-padding grid-12">
                             <div class="widget-separator no-border grid-3">
-                                <h5 class="typo">
-                                    Sales Center</h5>
+                                <h5 class="typo">Business</h5>
                                 <asp:DropDownList ID="SalesCenterIdDropDownList" runat="server" CssClass="form form-full">
                                 </asp:DropDownList>
                             </div>
                             <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
-                                    <h5 class="typo">
-                                        Date From</h5>
+                                    <h5 class="typo">Date From</h5>
                                 </div>
                                 <div class="grid-11">
                                     <div class="grid-1">
@@ -65,8 +63,7 @@
                             </div>
                             <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
-                                    <h5 class="typo">
-                                        Date To</h5>
+                                    <h5 class="typo">Date To</h5>
                                 </div>
                                 <div class="grid-11">
                                     <div class="grid-1">
@@ -79,19 +76,19 @@
                                 </div>
                             </div>
                             <div class="widget-separator no-border grid-3">
-                                <h5 class="typo">
-                                    Purchase Status</h5>
+                                <h5 class="typo">Status</h5>
                                 <asp:DropDownList ID="drpdwnPRStatus" runat="server" CssClass="form form-full">
                                     <asp:ListItem Value="All">ALL</asp:ListItem>
                                     <asp:ListItem Value="A">Approved</asp:ListItem>
                                     <asp:ListItem Value="P">Pending</asp:ListItem>
+                                    <asp:ListItem Value="R">Rejected</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div class="widget-separator no-border grid-4">
                                 <asp:Button ID="generateButton" runat="server" Text="Generate Report" CssClass="btn btn-info"
                                     OnClick="generateButton_Click" />
                                 <asp:Button ID="exportButton" runat="server" Text="Export Report" CssClass="btn btn-info"
-                                    OnClick="exportButton_Click" />
+                                    OnClick="exportButton_Click" Visible="false" />
                             </div>
                         </div>
                     </div>

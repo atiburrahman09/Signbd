@@ -28,9 +28,9 @@
                 <div class="widget">
                     <header class="widget-header">
                         <div class="widget-header-icon">
-                            </div>
-                        <h3 id="Header3" runat="server" class="widget-header-title">
-                            Product Damage Record of
+                            
+                        </div>
+                        <h3 id="Header3" runat="server" class="widget-header-title">Product Damage Record of
                             <asp:Label ID="idLabel" runat="server" Text=""></asp:Label></h3>
                     </header>
                     <div class="widget-body no-padding">
@@ -95,8 +95,8 @@
                                             <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
                                             <asp:BoundField DataField="RatePerUnit" HeaderText="Rate Per Unit" />
                                             <asp:BoundField DataField="Amount" HeaderText="Amount" />
-                                            <asp:BoundField DataField="PurchaseRecordId" HeaderText="PR ID" />
-                                            <asp:BoundField DataField="PurchaseRate" HeaderText="P Rate" />
+                                            <%--     <asp:BoundField DataField="PurchaseRecordId" HeaderText="PR ID" />
+                                            <asp:BoundField DataField="PurchaseRate" HeaderText="P Rate" />--%>
                                         </Columns>
                                     </asp:GridView>
                                 </div>

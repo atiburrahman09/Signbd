@@ -11,10 +11,6 @@
                 <h1 class="grid-6">
                     <i>&#xf132;</i>Approve Journal Voucher<span>Approving Journal Voucher</span></h1>
                 <div class="sitemap grid-6">
-                    <%--  <ul>
-                        <li><span>IPOS</span><i>/</i></li>
-                        <li><a href="/Default.aspx">Dashboard</a></li>
-                    </ul>--%>
                 </div>
             </div>
             <div class="data">
@@ -29,9 +25,9 @@
                 <div class="widget">
                     <header class="widget-header">
                         <div class="widget-header-icon">
-                            </div>
-                        <h3 id="Header3" runat="server" class="widget-header-title">
-                            Approve Journal Voucher of
+                            
+                        </div>
+                        <h3 id="Header3" runat="server" class="widget-header-title">Approve Journal Voucher of
                             <asp:Label ID="numberLabel" runat="server" Text=""></asp:Label></h3>
                     </header>
                     <div class="widget-body no-padding">
@@ -126,8 +122,7 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                     &times;</button>
-                                <h3>
-                                    Journal Entry - Details
+                                <h3>Journal Entry - Details
                                 </h3>
                             </div>
                             <div class="modal-body">

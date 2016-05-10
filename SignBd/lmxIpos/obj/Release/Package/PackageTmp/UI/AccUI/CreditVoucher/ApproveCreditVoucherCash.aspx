@@ -34,7 +34,7 @@
                     </header>
                     <div class="widget-body no-padding">
                         <div class="widget-separator no-padding grid-12">
-                            <div class="widget-separator no-border grid-3">
+                            <div class="widget-separator no-border grid-3" runat="server" Visible="False">
                                 <div class="grid-12">
                                     <h5 class="typo">
                                         Account On</h5>
@@ -213,13 +213,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="widget-separator no-border grid-12">
+                            <%--<div class="widget-separator no-border grid-12">
                                 <asp:LinkButton ID="approveLinkButton" runat="server" CssClass="btn btn-success"
                                     OnClick="approveLinkButton_Click">Approve</asp:LinkButton>
                                 <asp:LinkButton ID="rejectLinkButton" runat="server" CssClass="btn btn-danger" OnClick="rejectLinkButton_Click">Reject</asp:LinkButton>
                                 <button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">
                                     Cencel</button>
-                            </div>
+                            </div>--%>
                         </div>
                     </div>
                 </div>

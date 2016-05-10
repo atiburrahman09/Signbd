@@ -68,7 +68,7 @@
                     <div class="grid-12">
                         <div class="widget-separator grid-6">
                             <div class="grid-4">
-                                SC/WH ID:
+                                Business ID:
                             </div>
                             <div class="grid-8">
                                 <asp:Label ID="salesCenterIdLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="widget-separator grid-6">
                             <div class="grid-4">
-                                SC/WH Name:
+                                Business Name:
                             </div>
                             <div class="grid-8">
                                 <asp:Label ID="salesCenterNameLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
@@ -122,6 +122,14 @@
                             </div>
                             <div class="grid-8">
                                 <asp:Label ID="totalAmountLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="widget-separator grid-6">
+                            <div class="grid-4">
+                                Other Amount:
+                            </div>
+                            <div class="grid-8">
+                                <asp:Label ID="txtbxOtherAmount" runat="server" Text="" CssClass="infoLabel"></asp:Label>
                             </div>
                         </div>
                         <div class="widget-separator grid-6">

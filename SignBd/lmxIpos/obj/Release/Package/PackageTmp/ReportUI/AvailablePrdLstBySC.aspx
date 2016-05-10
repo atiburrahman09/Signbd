@@ -42,7 +42,7 @@
                     </header>
                     <div class="widget-body no-padding">
                         <div class="widget-separator grid-12">
-                            <div class="widget-separator no-border grid-2">
+                          <%--  <div class="widget-separator no-border grid-2">
                                 <div class="grid-12">
                                     <h5 class="typo">
                                         Report On</h5>
@@ -53,11 +53,11 @@
                                     <asp:ListItem>Warehouse</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
                                     <h5 class="typo">
-                                        <asp:Label runat="server" Text="Sales Center" id="titleSalesCenterOrWarehouse"></asp:Label>    
+                                        <asp:Label runat="server" Text="Business" id="titleSalesCenterOrWarehouse"></asp:Label>    
                                     </h5>
                                 </div>
                                 <div class="grid-11">
@@ -84,7 +84,7 @@
                                 <asp:Button ID="generateButton" runat="server" Text="Generate Report" CssClass="btn btn-info"
                                     OnClick="generateButton_Click" />
                                 <asp:Button ID="exportButton" runat="server" Text="Export Report" CssClass="btn btn-info"
-                                    OnClick="exportButton_Click" />
+                                    OnClick="exportButton_Click" Visible="false" />
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
             </div>
         </ContentTemplate>
         <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="drpdwnReportOn" EventName="SelectedIndexChanged" />
+          <%--  <asp:AsyncPostBackTrigger ControlID="drpdwnReportOn" EventName="SelectedIndexChanged" />--%>
             <asp:AsyncPostBackTrigger ControlID="generateButton" EventName="Click" />
             <asp:AsyncPostBackTrigger ControlID="exportButton" EventName="Click" />
         </Triggers>

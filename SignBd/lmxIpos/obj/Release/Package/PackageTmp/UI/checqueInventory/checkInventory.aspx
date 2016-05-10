@@ -33,16 +33,16 @@
                     </header>
                     <div class="widget-body no-padding">
                         <div class="widget-separator grid-12">
-                            <div class="widget-separator no-border grid-3">
+                            <%--<div class="widget-separator no-border grid-3">
                                 <h5 class="typo">Check at
                                 </h5>
                                 <asp:DropDownList ID="purchaseReturnFormDropdownList" runat="server" CssClass="form form-full"  AutoPostBack="true"
                                     required="required">
                                     <%--<asp:ListItem Text="--select--" Value="0"></asp:ListItem>--%>
                                     <asp:ListItem Text="Business" Value="WH"></asp:ListItem>
-                                    <%--<asp:ListItem Text="Sales Center" Value="SC"></asp:ListItem>--%>
+                                    <%--<asp:ListItem Text="Sales Center" Value="SC"></asp:ListItem>
                                 </asp:DropDownList>
-                            </div>
+                            </div>--%>
                             <div class="widget-separator no-border grid-3">
                                 <h5 class="typo">
                                     <asp:Label ID="wareHouseorSCLabel" runat="server" Text="Business"></asp:Label>

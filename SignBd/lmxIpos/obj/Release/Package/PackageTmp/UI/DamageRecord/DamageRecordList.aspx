@@ -34,16 +34,16 @@
                     </header>
                     <div class="widget-body no-padding">
                         <div class="widget-separator no-padding grid-12">
-                            <div class="widget-separator no-border grid-2">
+                           <%-- <div class="widget-separator no-border grid-2">
                                 <h5 class="typo">Check at
                                 </h5>
                                 <asp:DropDownList ID="chkatDropdownList" runat="server" CssClass="form form-full" AutoPostBack="true"
                                     required="required">
-                                   <%-- <asp:ListItem Text="--select--" Value="0"></asp:ListItem>--%>
+                                   <asp:ListItem Text="--select--" Value="0"></asp:ListItem>
                                     <asp:ListItem Text="Business" Value="WH"></asp:ListItem>
-                                    <%--<asp:ListItem Text="Sales Center" Value="SC"></asp:ListItem>--%>
+                                    <asp:ListItem Text="Sales Center" Value="SC"></asp:ListItem>
                                 </asp:DropDownList>
-                            </div>
+                            </div>--%>
                             <div class="widget-separator no-border grid-3">
                                 <h5 class="typo">
                                     <asp:Label ID="wareHouseorSCLabel" runat="server" Text="Business"></asp:Label>
@@ -52,7 +52,7 @@
                                     required="required">
                                 </asp:DropDownList>
                             </div>
-                            <div class="widget-separator no-border grid-2">
+                            <div class="widget-separator no-border grid-3">
                                 <h5 class="typo">Date From</h5>
                                 <div class="grid-12">
                                     <div class="grid-1">
@@ -64,7 +64,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="widget-separator no-border grid-2">
+                            <div class="widget-separator no-border grid-3">
                                 <h5 class="typo">Date To</h5>
                                 <div class="grid-12">
                                     <div class="grid-1">
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="widget-separator no-border grid-2">
+                            <div class="widget-separator no-border grid-3">
                                 <h5 class="typo">Status
                                 </h5>
                                 <asp:DropDownList ID="statusDropDownList" runat="server">

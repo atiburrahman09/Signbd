@@ -34,23 +34,23 @@
                     </header>
                     <div class="widget-body no-padding">
                         <div class="widget-separator no-padding grid-12">
-                            <div class="widget-separator no-border grid-3">
+                           <%-- <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
                                     <h5 class="typo">
                                         Account On</h5>
                                 </div>
                                 <div class="grid-11">
-                                    <asp:DropDownList ID="drpdwnAccountOn" runat="server" OnSelectedIndexChanged="drpdwnAccountOn_SelectedIndexChanged"
+                                    <asp:DropDownList ID="drpdwnAccountOn" runat="server" 
                                         AutoPostBack="true">
-                                        <%--<asp:ListItem>Sales Center</asp:ListItem>--%>
+                                        <asp:ListItem>Sales Center</asp:ListItem>
                                         <asp:ListItem>Business</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="widget-separator no-border grid-3">
                                 <div class="grid-12">
                                     <h5 class="typo">
-                                        <asp:Label runat="server" Text="Business Center Name" ID="titleSalesCenterOrWarehouse"></asp:Label>
+                                        <asp:Label runat="server" Text="Business Name" ID="titleSalesCenterOrWarehouse"></asp:Label>
                                     </h5>
                                 </div>
                                 <div class="grid-11">

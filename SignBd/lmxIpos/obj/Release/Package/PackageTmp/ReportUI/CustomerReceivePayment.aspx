@@ -44,7 +44,7 @@
                         <div class="widget-separator grid-12">
                             <div class="widget-separator no-border grid-3">
                                 <h5 class="typo">
-                                    Sales Center Name
+                                    Business
                                 </h5>
                                 <asp:DropDownList ID="salesCenterDropDownList" required="required" runat="server"
                                     CssClass="form form-full">
@@ -56,7 +56,7 @@
                                         Customer ID</h5>
                                 </div>
                                 <div class="grid-11">
-                                    <asp:DropDownList ID="customerIdDropDownList" runat="server" CssClass="form form-full" required="required">
+                                    <asp:DropDownList ID="customerIdDropDownList" runat="server" CssClass="form form-full chosen-select" required="required">
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                                 <asp:Button ID="generateButton" runat="server" Text="Generate Report" CssClass="btn btn-info"
                                     OnClick="generateButton_Click" />
                                 <asp:Button ID="exportButton" runat="server" Text="Export Report" CssClass="btn btn-info"
-                                    OnClick="exportButton_Click" />
+                                    OnClick="exportButton_Click" Visible="false" />
                             </div>
                         </div>
                     </div>
@@ -120,6 +120,16 @@
             $(".date-textbox, .icon-calendar").click(function () {
                 $(this).parent().find(".date-textbox").focus();
             });
+            var config = {
+                '.chosen-select': {},
+                '.chosen-select-deselect': { allow_single_deselect: true },
+                '.chosen-select-no-single': { disable_search_threshold: 20 },
+                '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+                '.chosen-select-width': { width: "96%" }
+            };
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
         }
     </script>
 </asp:Content>

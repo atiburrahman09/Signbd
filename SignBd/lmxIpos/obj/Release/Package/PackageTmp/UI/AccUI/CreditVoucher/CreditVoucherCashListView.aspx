@@ -35,7 +35,7 @@
                     </header>
                     <div class="widget-body no-padding">
                         <div class="widget-separator no-padding grid-12">
-                            <div class="widget-separator no-border grid-3">
+                            <div class="widget-separator no-border grid-3" runat="server" Visible="False">
                                 <div class="grid-12">
                                     <h5 class="typo">
                                         Account On</h5>

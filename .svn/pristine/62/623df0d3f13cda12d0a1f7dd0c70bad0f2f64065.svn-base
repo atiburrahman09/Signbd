@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using Lumex.Tech;
+
+namespace Lumex.Project.DAL
+{
+    public class OpenningBalanceDAL
+    {
+        internal System.Data.DataTable SaveOpenningBalance(BLL.OpenningBalanceBLL openningBalanceBLL, Tech.LumexDBPlayer db)
+        {
+            try
+            {
+                db.AddParameters("@AccountId",openningBalanceBLL.AccountId);
+                db.AddParameters("@Amount",openningBalanceBLL.Amount);
+                db.AddParameters("@OfficeBranchId", openningBalanceBLL.OfficeBranchId);
+                db.AddParameters("@DebitCredit",openningBalanceBLL.DebitOrCredit);
+                db.AddParameters("@PayToFromCompany",openningBalanceBLL.PayToFromCompany);
+                db.AddParameters("@Narration",openningBalanceBLL.Naretion);
+                db.AddParameters("@CreatedBy", LumexSessionManager.Get("ActiveUserId").ToString());
+                db.AddParameters("@CreatedFrom", LumexLibraryManager.GetTerminal());
+                db.AddParameters("@TransectionDate",openningBalanceBLL.TransectionDate);
+                db.AddParameters("@IsRecPay",openningBalanceBLL.Type);
+                DataTable dt = db.ExecuteDataTable("INSERT_OPANING_BALANCE_LEDGER_WISE", true);
+                return dt;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                openningBalanceBLL = null;
+            }
+        }
+    }
+}

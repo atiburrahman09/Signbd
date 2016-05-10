@@ -173,12 +173,20 @@
                                     <asp:Label ID="statusLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
                                 </div>
                             </div>
-                            <div class="widget-separator no-border grid-12">
+                            <div class="widget-separator no-border grid-6">
                                 <div class="grid-4">
                                     Created By:
                                 </div>
                                 <div class="grid-8">
                                     <asp:Label ID="lblCreatedBy" runat="server" Text="" CssClass="infoLabel"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="widget-separator no-border grid-6">
+                                <div class="grid-4">
+                                    Created Date:
+                                </div>
+                                <div class="grid-8">
+                                    <asp:Label ID="lblCreatedDate" runat="server" Text="" CssClass="infoLabel"></asp:Label>
                                 </div>
                             </div>
                         </div>
@@ -204,7 +212,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Vendor Name">
                                             <ItemTemplate>
-                                                <asp:DropDownList ID="vendorDropDownList" runat="server">
+                                                <asp:DropDownList ID="vendorDropDownList" Width="80" OnSelectedIndexChanged="VendorList_SelectedIndexChanged" AutoPostBack="true" runat="server">
                                                 </asp:DropDownList>
                                             </ItemTemplate>
                                         </asp:TemplateField>

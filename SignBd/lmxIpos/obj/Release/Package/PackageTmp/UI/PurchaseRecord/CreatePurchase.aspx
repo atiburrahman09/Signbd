@@ -79,7 +79,7 @@
                                 <asp:Label ID="warehouseNameLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
                             </div>
                         </div>
-                        
+
                         <div class="widget-separator grid-6">
                             <div class="grid-4">
                                 Requisition Narration:
@@ -88,7 +88,7 @@
                                 <asp:Label ID="requisitionNarrationLabel" runat="server" Text="" CssClass="infoLabel"></asp:Label>
                             </div>
                         </div>
-                        
+
                         <div class="widget-separator grid-6">
                             <div class="grid-12">
                                 <div class="grid-4">
@@ -101,8 +101,6 @@
                             </div>
 
                         </div>
-                     
-                        
                     </div>
                     <div class="widget-separator no-border grid-12">
                     </div>
@@ -233,30 +231,31 @@
                                     <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
                                     <asp:BoundField DataField="ProductUnit" HeaderText="Unit" />
                                     <asp:BoundField DataField="QuantityUnit" HeaderText="Order Qty" />
+                                     <asp:BoundField DataField="UnitPrice" HeaderText="Apv. Unit Price" />
                                     <asp:TemplateField HeaderText="Purchase Qty">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="purchaseQuantityTextBox" Width="80" CssClass="pQty-rpu-amt-cal"
+                                            <asp:TextBox ID="purchaseQuantityTextBox" Width="60" CssClass="pQty-rpu-amt-cal"
                                                 runat="server"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Rate Per Unit">
+                                    <asp:TemplateField HeaderText="Rate/ Unit">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="ratePerUnitTextBox" Width="80" CssClass="pQty-rpu-amt-cal" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="ratePerUnitTextBox" Width="70" CssClass="pQty-rpu-amt-cal" runat="server"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Amount">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="amountTextBox" Width="80" CssClass="amt-cal" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="amountTextBox" Width="60" CssClass="amt-cal" runat="server"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Unit Price">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="unitPriceTextBox" Width="80" CssClass="read-only" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="unitPriceTextBox" Width="60" CssClass="read-only" runat="server"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Narration">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="productNarrationTextBox" Width="80" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="productNarrationTextBox" Width="60" runat="server"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
