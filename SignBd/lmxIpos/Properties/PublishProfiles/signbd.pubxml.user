@@ -24,13 +24,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/29/2016 18:42:44</publishTime>
     </File>
     <File Include="bin/lmxIpos.dll">
-      <publishTime>04/18/2016 14:46:18</publishTime>
+      <publishTime>06/19/2016 15:43:02</publishTime>
     </File>
     <File Include="bin/Lumex.Project.dll">
-      <publishTime>04/18/2016 14:46:16</publishTime>
+      <publishTime>06/19/2016 15:42:57</publishTime>
     </File>
     <File Include="bin/Lumex.Report.dll">
-      <publishTime>04/17/2016 12:02:49</publishTime>
+      <publishTime>05/16/2016 13:29:38</publishTime>
     </File>
     <File Include="bin/Lumex.Tech.dll">
       <publishTime>10/25/2015 16:51:41</publishTime>
@@ -1530,7 +1530,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/28/2016 11:26:09</publishTime>
     </File>
     <File Include="ReportUI/ProductWiseSalesReport.aspx">
-      <publishTime>04/10/2016 12:50:13</publishTime>
+      <publishTime>05/16/2016 12:04:05</publishTime>
     </File>
     <File Include="ReportUI/PurchaseReportUI.aspx">
       <publishTime>02/06/2016 12:42:53</publishTime>
@@ -2169,7 +2169,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2015 19:07:00</publishTime>
     </File>
     <File Include="UI/Product/ManageProductPrice.aspx">
-      <publishTime>11/29/2015 16:21:06</publishTime>
+      <publishTime>06/19/2016 15:35:46</publishTime>
     </File>
     <File Include="UI/Product/ManageProductVendor.aspx">
       <publishTime>11/29/2015 16:21:06</publishTime>

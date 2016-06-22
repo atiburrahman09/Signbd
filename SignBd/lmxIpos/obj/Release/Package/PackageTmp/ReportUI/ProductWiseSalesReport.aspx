@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/App.Master" AutoEventWireup="true" CodeBehind="ProductWiseSalesReport.aspx.cs" Inherits="lmxIpos.ReportUI.ProductWiseSalesReport" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/App.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="ProductWiseSalesReport.aspx.cs" Inherits="lmxIpos.ReportUI.ProductWiseSalesReport" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="headContentPlaceHolder" runat="server">
      <script type="text/javascript">
         function ExportReportForm() {

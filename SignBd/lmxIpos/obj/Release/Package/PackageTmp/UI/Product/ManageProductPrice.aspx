@@ -64,7 +64,12 @@
                                         <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
                                         <asp:BoundField DataField="Barcode" HeaderText="Barcode" />
                                         <asp:BoundField DataField="ProductGroupName" HeaderText="Product Group" />
-                                        <asp:BoundField DataField="LastUnitPrice" HeaderText="Unit Cost" />
+                                       <%-- <asp:BoundField DataField="LastUnitPrice" HeaderText="Unit Cost" />--%>
+                                        <asp:TemplateField HeaderText="Unit Cost">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="lastUnitTextBox" Width="60" runat="server" CssClass="buyPriceTextBox validQty" Text='<%#Eval("LastUnitPrice").ToString() %>'></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Sale Price">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="newPriceTextBox" Width="60" runat="server" CssClass="newPriceTextBox validQty"></asp:TextBox>
@@ -120,6 +125,7 @@
             var checkedRowCount = 0;
             $(":checkbox").prop("autocomplete", "off");
             $(".newPriceTextBox").prop("autocomplete", "off");
+            $(".lastUnitTextBox").prop("autocomplete", "off");
 
             $("#allCheckBox").click(function () {
                 if ($(this).is(":checked")) {
